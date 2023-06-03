@@ -1,0 +1,72 @@
+#properties di default, sotto, divise da --- ci sono le properties dei vari profili
+#usare valori per ambiente di test
+
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDB103Dialect
+    hibernate:
+      #ddl-auto: none
+      ddl-auto: validate
+  datasource:
+    url: jdbc:mariadb://giochisulnostrotavolo.it:3306/listApp
+    username: TJUPyfFvHR
+    password: VerANg8HEa62+8t
+  devtools:
+    restart:
+      enabled: false
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  servlet.multipart.enabled: true
+  servlet.multipart.max-file-size: 500MB
+  servlet.multipart.max-request-size: 500MB
+
+logging:
+  level:
+    root: info
+  file:
+    name: /var/log/listone/listone.log
+
+# sentry:
+#   dsn: https://ecb0a6522fb544ebb9c9fcea8dfdc25a@o4504951030284288.ingest.sentry.io/4505051194327040
+#   # Set traces-sample-rate to 1.0 to capture 100% of transactions for performance monitoring.
+#   # We recommend adjusting this value in production.
+#   traces-sample-rate: 0.5
+
+# this configuration needs to correspond to the Vue.js frontends' vue.config.js devServer.proxy.target configuration!
+# otherwise you may experience errors like: Proxy error: Could not proxy request /api/hello from localhost:8080 to http://localhost:8098... (ECONNREFUSED).
+server:
+  port: 8089
+  servlet:
+    context-path: /
+
+app:
+  allowedOrigins: http://localhost:5173
+  jwtSecret: 4c1$ecR3t
+  jwtExpirationMs: 28800000 #8h, ma in JwtUtils è ignorato al momento
+  #enableQuartz: true
+
+---
+spring:
+  profiles: localTest
+
+logging:
+  level:
+    it.giochisulnostrotavolo: debug
+    #'[it.giochisulnostrotavolo]': debug
+  file:
+    name: c:\Work\listone.log
+
+app:
+  rootDir: c:\temp\
+  #enableQuartz: false  
+
+---
+spring:
+  profiles: prod
+
+# sentry:
+#   dsn: https://7f274d1a5de44081a7675c44d224c59c@o4504951030284288.ingest.sentry.io/4505051237515264
+#   traces-sample-rate: 0.1
+
+app:
