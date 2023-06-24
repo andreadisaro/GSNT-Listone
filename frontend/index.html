@@ -10,67 +10,10 @@
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
     />
-    <title>ACI Digital Assistance</title>
-    <!-- Matomo -->
-    <script type="text/javascript">
-      var _paq = (window._paq = window._paq || []);
-      const isProd = location.hostname.indexOf("p.acigo.it") > -1;
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(["requireCookieConsent"]);
-      _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-      _paq.push(["trackPageView"]);
-      _paq.push(["enableLinkTracking"]);
-      /*_paq.push([
-        "AbTesting::create",
-        {
-          name: "Primo", // you can also use '1' (ID of the experiment) to hide the name
-          percentage: 100,
-          includedTargets: [
-            {
-              attribute: "url",
-              inverted: "0",
-              //type: "equals_simple",
-              type: "any",
-              value: "\/",
-            },
-          ],
-          excludedTargets: [],
-          variations: [
-            {
-              name: "original",
-              activate: function (event) {
-                if (location.pathname === "/")
-                  localStorage.setItem("variant", "original");
-              },
-            },
-            {
-              name: "B", // you can also use '1' (ID of the variation) to hide the name
-              activate: function (event) {
-                if (location.pathname === "/")
-                  localStorage.setItem("variant", "b");
-              },
-            },
-          ],
-          trigger: function () {
-            return true; // here you can further customize which of your visitors will participate in this experiment
-          },
-        },
-      ]);*/
-      localStorage.setItem("variant", "original");
-      (function () {
-        var u = "https://aciglobalservizi.matomo.cloud/";
-        _paq.push(["setTrackerUrl", u + "matomo.php"]);
-        _paq.push(["setSiteId", isProd ? "4" : "3"]);
-      })();
-    </script>
-    <script
-      type="text/javascript"
-      src="https://aciglobalservizi.matomo.cloud/matomo.js"
-    ></script>
-    <!-- End Matomo Code -->
-    <script type="text/javascript">
+    <title>Listone GSNT</title>
+    <!--script type="text/javascript">
       var _iub = _iub || [];
-    </script>
+    </script-->
   </head>
   <body>
     <div id="app"></div>

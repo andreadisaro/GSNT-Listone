@@ -3,90 +3,75 @@ import { useRouter } from "vue-router";
 import { useDataStore } from "../store/useDataStore";
 import { APISettings } from "../api/config.js";
 import { useLoadingStore } from "../store/useLoadingStore";
-import { useI18n } from "vue-i18n";
-const i18n = useI18n();
+import Item from "./Item.vue";
 const loadingStore = useLoadingStore();
 const dataStore = useDataStore();
 const router = useRouter();
 const errorFunction = () => {
-  dataStore.setErrorType("generico");
-  dataStore.setShowErrorCaption2(false);
-  router.push("/endKo");
+  alert("Errore di connessione, riprova più tardi");
 };
-let token = router.currentRoute.value.query.t;
-if (token == null) {
-  token = localStorage.getItem("token");
-}
-dataStore.setToken(token);
-let demo = router.currentRoute.value.query.demo;
-dataStore.setDemo(demo);
-if ((token == null || token == "null") && !demo) {
-  console.error("Token null");
-  errorFunction();
-}
-else {
-  loadingStore.addLoading();
-  let variant = localStorage.getItem("variant");
-  dataStore.setVariant(variant);
-  if (variant == "original") {
-    router.push("/welcome");
+loadingStore.addLoading();
+fetch("/public/api/event", {
+  method: "GET",
+  headers: APISettings.headers
+}).then(function (response) {
+  if (response.status != 200) {
+    console.error(response.status);
+    errorFunction();
+  } else {
+    response.json().then((res) => {
+      console.log(res);
+      dataStore.setEventTitle(res.title);
+      dataStore.setEventLogo(res.logo);
+    });
   }
-  else if (variant == "b") {
-    router.push("/rv1");
+}).finally(() => {
+  loadingStore.removeLoading();
+});
+loadingStore.addLoading();
+fetch("/public/api/items", {
+  method: "GET",
+  headers: APISettings.headers
+}).then(function (response) {
+  if (response.status != 200) {
+    console.error(response.status);
+    errorFunction();
+  } else {
+    response.json().then((res) => {
+      console.log(res);
+      dataStore.setItems(res);
+    });
   }
-  fetch("/public/api/decripta", {
-    method: "POST",
-    headers: APISettings.headers,
-    body: JSON.stringify({
-      token: dataStore.getToken,
-      canale: "WEB",
-    }),
-  }).then(function (response) {
-    var res = {
-      success: "1",
-      message_code: "string",
-      message: "string",
-      response: {
-        num_cell: "3331234567",
-        num_assistenza: "111",
-        //num_assistenza: "0266165966",//Kymco
-        //num_assistenza: "800541760",//Voge
-        //num_assistenza: "0266165140",//CFMoto
-        //num_assistenza: "0266165651",//Subaru
-        //num_assistenza: "0266165176",//Yadea
-        //num_assistenza: "0266165326",//BMW
-        //num_assistenza: "0266165548",//Volvo
-        //num_assistenza: "0266165610",//Ducati
-        //num_assistenza: "0266165329",//BMWMotorrad
-        //num_assistenza: "0266165846",//Lifan
-      },
-    };
-    if (response.status != 200 && !dataStore.demo) {
-      console.error(response.status);
-      if (!dataStore.demo) errorFunction();
-    } else {
-      response.json().then((json) => {
-        if (!dataStore.demo) res = json;
-        console.log(res);
-        if (res.success == "0") {
-          console.error(res.message);
-          if (!dataStore.demo) errorFunction();
-        }
-        dataStore.setNumCell(res.response.num_cell);
-        dataStore.setNumChiamato(res.response.num_assistenza.replace(/ /g, ''));
-        if (dataStore.getPrivacyCliente) {
-          for (let l in dataStore.getPrivacyCliente) {
-            i18n.mergeLocaleMessage(l, dataStore.getPrivacyCliente[l]);
-          }
-        }
-      });
-    }
-  }).finally(() => {
-    loadingStore.removeLoading();
-  });
-}
+}).finally(() => {
+  loadingStore.removeLoading();
+});
 </script>
 
-<template></template>
+<template>
+  <div class="w-full text-center items-stretch flex flex-col p-8 pt-20 min-h-[95vh]">
+    <div class="w-full items-center flex-1">
+      <div v-for="(category, catI) in dataStore.items" :key="catI">
+        <div class="flex font-extrabold">{{ catI }}</div>
+        <div v-for="(editor, editorI, i) in category" :key="editorI" class="flex-1" :class="i > 0 ? 'mt-4' : ''">
+          <div class="flex flex-row">
+            <div class="w-6">
+              A
+            </div>
+            <div class="w-6">
+              P
+            </div>
+            <div class="w-6">
+              B
+            </div>
+            <div class="font-semibold flex-1">{{ editorI }}</div>
+          </div>
+          <div v-for="item in editor" :key="'item' + item.id" class="flex-1">
+            <Item :item="item" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style scoped></style>

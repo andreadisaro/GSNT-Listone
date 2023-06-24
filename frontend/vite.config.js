@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 let host = "http://localhost:8089";
-host = "https://t.acigo.it";
+//host = "https://t.acigo.it";
 
 // https://vitejs.dev/config/
 export default defineConfig({
