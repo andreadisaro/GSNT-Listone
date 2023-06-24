@@ -1,10 +1,13 @@
 package it.giochisulnostrotavolo.listone.controller;
 
 import it.giochisulnostrotavolo.listone.entities.Event;
+import it.giochisulnostrotavolo.listone.entities.EventDaysJournalists;
 import it.giochisulnostrotavolo.listone.entities.Item;
+import it.giochisulnostrotavolo.listone.service.EventDaysJournalistsService;
 import it.giochisulnostrotavolo.listone.service.EventService;
 import it.giochisulnostrotavolo.listone.service.ItemService;
 import java.util.List;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +28,9 @@ public class ApiController {
   @Autowired
   private EventService eventService;
 
+  @Autowired
+  private EventDaysJournalistsService eventDaysJournalistsService;
+
   @GetMapping("heartBeat")
   public ResponseEntity<String> heartBeat() {
     return ResponseEntity.ok().body("OK");
@@ -38,5 +44,10 @@ public class ApiController {
   @GetMapping("event")
   public Event event() {
     return eventService.getEvent();
+  }
+
+  @GetMapping("journalists")
+  public List<EventDaysJournalists> journalists() {
+    return eventDaysJournalistsService.findAll();
   }
 }

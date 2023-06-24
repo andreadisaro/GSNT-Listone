@@ -4,6 +4,7 @@ import { useDataStore } from "../store/useDataStore";
 import { APISettings } from "../api/config.js";
 import { useLoadingStore } from "../store/useLoadingStore";
 import Item from "./Item.vue";
+import ItemJournalist from "./ItemJournalist.vue";
 const loadingStore = useLoadingStore();
 const dataStore = useDataStore();
 const router = useRouter();
@@ -45,6 +46,22 @@ fetch("/public/api/items", {
 }).finally(() => {
   loadingStore.removeLoading();
 });
+fetch("/public/api/journalists", {
+  method: "GET",
+  headers: APISettings.headers
+}).then(function (response) {
+  if (response.status != 200) {
+    console.error(response.status);
+    errorFunction();
+  } else {
+    response.json().then((res) => {
+      console.log(res);
+      dataStore.setJournalistsDays(res);
+    });
+  }
+}).finally(() => {
+  loadingStore.removeLoading();
+});
 </script>
 
 <template>
@@ -68,6 +85,18 @@ fetch("/public/api/items", {
           <div v-for="item in editor" :key="'item' + item.id" class="flex-1">
             <Item :item="item" />
           </div>
+        </div>
+      </div>
+      <div>
+        <div class="flex font-extrabold my-8">{{ $t('Redazione') }}</div>
+        <div class="flex flex-row">
+          <div class="w-6" v-for="day in dataStore.days" :key="day + 'title'">
+            {{ day }}
+          </div>
+          <div class="font-semibold flex-1">&nbsp;</div>
+        </div>
+        <div v-for="(jd, jdI) in dataStore.journalistsDays" :key="jdI" class="flex-1">
+          <ItemJournalist :item="jd" :journalist="jdI" />
         </div>
       </div>
     </div>
