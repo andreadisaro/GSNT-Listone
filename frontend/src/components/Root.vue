@@ -20,7 +20,7 @@ fetch("/public/api/event", {
     errorFunction();
   } else {
     response.json().then((res) => {
-      console.log(res);
+      //console.log(res);
       dataStore.setEventTitle(res.title);
       dataStore.setEventLogo(res.logo);
     });
@@ -50,9 +50,9 @@ fetch("/public/api/items", {
 <template>
   <div class="w-full text-center items-stretch flex flex-col p-8 pt-20 min-h-[95vh]">
     <div class="w-full items-center flex-1">
-      <div v-for="(category, catI) in dataStore.items" :key="catI">
-        <div class="flex font-extrabold">{{ catI }}</div>
-        <div v-for="(editor, editorI, i) in category" :key="editorI" class="flex-1" :class="i > 0 ? 'mt-4' : ''">
+      <div v-for="(category, catI, i) in dataStore.items" :key="catI">
+        <div class="flex font-extrabold" :class="i > 0 ? 'my-8' : ''">{{ catI }}</div>
+        <div v-for="(editor, editorI, j) in category" :key="editorI" class="flex-1" :class="j > 0 ? 'mt-4' : ''">
           <div class="flex flex-row">
             <div class="w-6">
               A
@@ -61,7 +61,7 @@ fetch("/public/api/items", {
               P
             </div>
             <div class="w-6">
-              B
+              {{ editor.length && editor[0].bookType ? 'L' : 'B' }}
             </div>
             <div class="font-semibold flex-1">{{ editorI }}</div>
           </div>

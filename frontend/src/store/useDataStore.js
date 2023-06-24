@@ -62,6 +62,8 @@ export const useDataStore = defineStore("data", () => {
 
     items.value = itemsTmp;
     categories.value = categoriesTmp;
+    console.log("items", itemsTmp);
+    console.log("categories", categoriesTmp);
     localStorage.setItem("items", JSON.stringify(itemsTmp));
     localStorage.setItem("categories", JSON.stringify(categoriesTmp));
   }
