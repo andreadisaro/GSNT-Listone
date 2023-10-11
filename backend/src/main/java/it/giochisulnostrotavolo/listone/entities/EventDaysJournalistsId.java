@@ -17,6 +17,18 @@ public class EventDaysJournalistsId implements java.io.Serializable {
   @JoinColumn(name = "id_journalist")
   private Journalists journalist;
 
+  @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof EventDaysJournalistsId) {
+      EventDaysJournalistsId other = (EventDaysJournalistsId) obj;
+      return (
+        eventDay.getId().equals(other.getEventDay().getId()) &&
+        journalist.getId().equals(other.getJournalist().getId())
+      );
+    }
+    return false;
+  }
+
   public EventDays getEventDay() {
     return eventDay;
   }
