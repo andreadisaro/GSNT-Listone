@@ -1,5 +1,5 @@
 <script setup>
-import { useRouter } from "vue-router";
+//import { useRouter } from "vue-router";
 import { useDataStore } from "../store/useDataStore";
 import { APISettings } from "../api/config.js";
 import { useLoadingStore } from "../store/useLoadingStore";
@@ -7,11 +7,12 @@ import Item from "./Item.vue";
 import ItemJournalist from "./ItemJournalist.vue";
 const loadingStore = useLoadingStore();
 const dataStore = useDataStore();
-const router = useRouter();
+//const router = useRouter();
 const errorFunction = () => {
   alert("Errore di connessione, riprova più tardi");
 };
 loadingStore.addLoading();
+dataStore.loadData();
 fetch("/public/api/event", {
   method: "GET",
   headers: APISettings.headers

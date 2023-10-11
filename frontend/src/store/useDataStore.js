@@ -1,4 +1,4 @@
-import { ref, computed } from "vue";
+import { ref, watch } from "vue";
 import { defineStore } from "pinia";
 
 export const useDataStore = defineStore("data", () => {
@@ -53,6 +53,18 @@ export const useDataStore = defineStore("data", () => {
 
     for (let i = 0; i < itemsP.length; i++) {
       let item = itemsP[i];
+      if (
+        items.value[item.category.name] &&
+        items.value[item.category.name][item.editor.name]
+      ) {
+        let index = items.value[item.category.name][item.editor.name].findIndex(
+          (element) => element.id === item.id
+        );
+        item = {
+          ...items.value[item.category.name][item.editor.name][index],
+          ...item,
+        };
+      }
       if (!categoriesTmp.includes(item.category.name)) {
         categoriesTmp.push(item.category.name);
       }
@@ -69,9 +81,15 @@ export const useDataStore = defineStore("data", () => {
     categories.value = categoriesTmp;
     console.log("items", itemsTmp);
     console.log("categories", categoriesTmp);
-    localStorage.setItem("items", JSON.stringify(itemsTmp));
     localStorage.setItem("categories", JSON.stringify(categoriesTmp));
   }
+  watch(
+    () => items.value,
+    (itemsP) => {
+      localStorage.setItem("items", JSON.stringify(itemsP));
+    },
+    { deep: true }
+  );
   function setJournalistsDays(journalistsDaysP) {
     let ret = {};
     let daysI = [];

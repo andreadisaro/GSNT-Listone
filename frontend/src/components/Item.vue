@@ -7,14 +7,14 @@ defineProps({
 <template>
   <div class="flex flex-row">
     <div class="w-6">
-      <input type="checkbox" :disabled="!item.isAvailable" />
+      <input type="checkbox" :disabled="!item.isAvailable" v-model="item.look" />
     </div>
     <div class="w-6">
-      <input type="checkbox" :disabled="!item.isPlayable" />
+      <input type="checkbox" :disabled="!item.isPlayable" v-model="item.play" />
     </div>
     <div class="w-6">
       <span v-if="item.bookType">{{ item.bookType }}</span>
-      <input type="checkbox" :disabled="!item.isBuyable" v-else />
+      <input type="checkbox" :disabled="!item.isBuyable" v-model="item.buy" v-else />
     </div>
     <div class="flex-1">{{ item.name }}</div>
   </div>

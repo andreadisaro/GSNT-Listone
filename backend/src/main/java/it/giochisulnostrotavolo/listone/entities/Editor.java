@@ -18,9 +18,6 @@ public class Editor implements java.io.Serializable {
   @Column
   private String name;
 
-  @Column
-  private String position;
-
   public Long getId() {
     return id;
   }
@@ -35,13 +32,5 @@ public class Editor implements java.io.Serializable {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public String getPosition() {
-    return position;
-  }
-
-  public void setPosition(String position) {
-    this.position = position;
   }
 }
