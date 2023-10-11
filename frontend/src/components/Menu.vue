@@ -8,6 +8,10 @@ const vaiACategoria = (i) => {
     dataStore.goToRef = i;
   });
 };
+const setFilter = (filter) => {
+  dataStore.setShowFilter(filter);
+  dataStore.showMenu = false;
+};
 </script>
 
 <template>
@@ -28,6 +32,65 @@ const vaiACategoria = (i) => {
           @click="vaiACategoria(i)"
         >
           {{ catI }}
+        </div>
+      </div>
+      <div class="flex">Mostra:</div>
+      <div class="ml-4">
+        <div class="flex flex-row" @click="setFilter('showAll')">
+          <div class="w-6">
+            <input
+              type="checkbox"
+              :checked="dataStore.showFilter === 'showAll'"
+            />
+          </div>
+          <div class="flex-1">Tutti gli elementi</div>
+        </div>
+        <div class="flex flex-row" @click="setFilter('showOnlyLook')">
+          <div class="w-6">
+            <input
+              type="checkbox"
+              :checked="dataStore.showFilter === 'showOnlyLook'"
+            />
+          </div>
+          <div class="flex-1">Solo gli elementi che voglio visionare</div>
+        </div>
+        <div class="flex flex-row" @click="setFilter('showOnlyPlay')">
+          <div class="w-6">
+            <input
+              type="checkbox"
+              :checked="dataStore.showFilter === 'showOnlyPlay'"
+            />
+          </div>
+          <div class="flex-1">Solo gli elementi che voglio giocare</div>
+        </div>
+        <div class="flex flex-row" @click="setFilter('showOnlyBuy')">
+          <div class="w-6">
+            <input
+              type="checkbox"
+              :checked="dataStore.showFilter === 'showOnlyBuy'"
+            />
+          </div>
+          <div class="flex-1">Solo gli elementi che voglio comprare</div>
+        </div>
+        <div class="flex flex-row" @click="setFilter('showOnlySomething')">
+          <div class="w-6">
+            <input
+              type="checkbox"
+              :checked="dataStore.showFilter === 'showOnlySomething'"
+            />
+          </div>
+          <div class="flex-1">
+            Solo gli elementi con una qualsiasi preferenza
+          </div>
+        </div>
+        <div class="flex flex-row" @click="setFilter('showOnlyNothing')">
+          <div class="w-6">
+            <input
+              type="checkbox"
+              :checked="dataStore.showFilter === 'showOnlyNothing'"
+            />
+          </div>
+          <div class="flex-1">Solo gli elementi con nessuna preferenza</div>
         </div>
       </div>
     </div>

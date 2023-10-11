@@ -1,10 +1,10 @@
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import { defineStore } from "pinia";
 
 export const useDataStore = defineStore("data", () => {
   const eventTitle = ref(localStorage.getItem("eventTitle") || "");
   const eventLogo = ref(localStorage.getItem("eventLogo") || "");
-  const items = ref(JSON.parse(localStorage.getItem("items")) || {});
+  const items_ = ref(JSON.parse(localStorage.getItem("items")) || {});
   const categories = ref(JSON.parse(localStorage.getItem("categories")) || []);
   const journalistsDays = ref(
     JSON.parse(localStorage.getItem("journalistsDays")) || {}
@@ -12,6 +12,10 @@ export const useDataStore = defineStore("data", () => {
   const days = ref(JSON.parse(localStorage.getItem("days")) || []);
   const showMenu = ref(false);
   const goToRef = ref(null);
+  const showFilter = ref("showAll");
+  function setShowFilter(showFilterP) {
+    showFilter.value = showFilterP;
+  }
   function setEventTitle(eventTitleP) {
     eventTitle.value = eventTitleP;
     localStorage.setItem("eventTitle", eventTitleP);
@@ -49,14 +53,14 @@ export const useDataStore = defineStore("data", () => {
     for (let i = 0; i < itemsP.length; i++) {
       let item = itemsP[i];
       if (
-        items.value[item.category.name] &&
-        items.value[item.category.name][item.editor.name]
+        items_.value[item.category.name] &&
+        items_.value[item.category.name][item.editor.name]
       ) {
-        let index = items.value[item.category.name][item.editor.name].findIndex(
-          (element) => element.id === item.id
-        );
+        let index = items_.value[item.category.name][
+          item.editor.name
+        ].findIndex((element) => element.id === item.id);
         item = {
-          ...items.value[item.category.name][item.editor.name][index],
+          ...items_.value[item.category.name][item.editor.name][index],
           ...item,
         };
       }
@@ -72,16 +76,63 @@ export const useDataStore = defineStore("data", () => {
       itemsTmp[item.category.name][item.editor.name].push(item);
     }
 
-    items.value = itemsTmp;
+    items_.value = itemsTmp;
     categories.value = categoriesTmp;
-    console.log("items", itemsTmp);
+    console.log("items_", itemsTmp);
     console.log("categories", categoriesTmp);
     localStorage.setItem("categories", JSON.stringify(categoriesTmp));
   }
+  const items = computed(() => {
+    let ret = {};
+    for (let category in items_.value) {
+      for (let editor in items_.value[category]) {
+        for (let i = 0; i < items_.value[category][editor].length; i++) {
+          let go = false;
+          if (showFilter.value == "showAll") {
+            go = true;
+          } else if (showFilter.value == "showOnlyLook") {
+            go = items_.value[category][editor][i].look;
+          } else if (showFilter.value == "showOnlyPlay") {
+            go = items_.value[category][editor][i].play;
+          } else if (showFilter.value == "showOnlyBuy") {
+            go = items_.value[category][editor][i].buy;
+          } else if (showFilter.value == "showOnlySomething") {
+            go =
+              items_.value[category][editor][i].look ||
+              items_.value[category][editor][i].play ||
+              items_.value[category][editor][i].buy;
+          } else if (showFilter.value == "showOnlyNothing") {
+            go =
+              !items_.value[category][editor][i].look &&
+              !items_.value[category][editor][i].play &&
+              !items_.value[category][editor][i].buy;
+          }
+          if (go) {
+            if (!ret[category]) {
+              ret[category] = {};
+            }
+            if (!ret[category][editor]) {
+              ret[category][editor] = [];
+            }
+            ret[category][editor].push(items_.value[category][editor][i]);
+          }
+        }
+      }
+    }
+    console.log("items", ret);
+    return ret;
+  });
   watch(
-    () => items.value,
+    () => items_.value,
     (itemsP) => {
       localStorage.setItem("items", JSON.stringify(itemsP));
+    },
+    { deep: true }
+  );
+  watch(
+    () => showFilter.value,
+    (itemsP) => {
+      console.log("showFilter", itemsP);
     },
     { deep: true }
   );
@@ -153,6 +204,8 @@ export const useDataStore = defineStore("data", () => {
     days,
     showMenu,
     goToRef,
+    showFilter,
+    setShowFilter,
     setEventTitle,
     setEventLogo,
     setItems,
