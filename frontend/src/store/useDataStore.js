@@ -2,23 +2,16 @@ import { ref, watch } from "vue";
 import { defineStore } from "pinia";
 
 export const useDataStore = defineStore("data", () => {
-  const eventTitle = ref("");
-  const eventLogo = ref("");
-  const items = ref({});
-  const categories = ref([]);
-  const journalistsDays = ref({});
-  const days = ref([]);
+  const eventTitle = ref(localStorage.getItem("eventTitle") || "");
+  const eventLogo = ref(localStorage.getItem("eventLogo") || "");
+  const items = ref(JSON.parse(localStorage.getItem("items")) || {});
+  const categories = ref(JSON.parse(localStorage.getItem("categories")) || []);
+  const journalistsDays = ref(
+    JSON.parse(localStorage.getItem("journalistsDays")) || {}
+  );
+  const days = ref(JSON.parse(localStorage.getItem("days")) || []);
   const showMenu = ref(false);
   const goToRef = ref(null);
-  function loadData() {
-    eventTitle.value = localStorage.getItem("eventTitle") || "";
-    eventLogo.value = localStorage.getItem("eventLogo") || "";
-    items.value = JSON.parse(localStorage.getItem("items")) || {};
-    categories.value = JSON.parse(localStorage.getItem("categories")) || [];
-    journalistsDays.value =
-      JSON.parse(localStorage.getItem("journalistsDays")) || {};
-    days.value = JSON.parse(localStorage.getItem("days")) || [];
-  }
   function setEventTitle(eventTitleP) {
     eventTitle.value = eventTitleP;
     localStorage.setItem("eventTitle", eventTitleP);
@@ -160,7 +153,6 @@ export const useDataStore = defineStore("data", () => {
     days,
     showMenu,
     goToRef,
-    loadData,
     setEventTitle,
     setEventLogo,
     setItems,

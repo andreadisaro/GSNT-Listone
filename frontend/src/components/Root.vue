@@ -10,7 +10,6 @@ const errorFunction = () => {
   alert("Errore di connessione, riprova più tardi");
 };
 loadingStore.addLoading();
-dataStore.loadData();
 fetch("/public/api/event", {
   method: "GET",
   headers: APISettings.headers,
