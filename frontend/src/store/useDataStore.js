@@ -8,6 +8,8 @@ export const useDataStore = defineStore("data", () => {
   const categories = ref([]);
   const journalistsDays = ref({});
   const days = ref([]);
+  const showMenu = ref(false);
+  const goToRef = ref(null);
   function loadData() {
     eventTitle.value = localStorage.getItem("eventTitle") || "";
     eventLogo.value = localStorage.getItem("eventLogo") || "";
@@ -156,6 +158,8 @@ export const useDataStore = defineStore("data", () => {
     categories,
     journalistsDays,
     days,
+    showMenu,
+    goToRef,
     loadData,
     setEventTitle,
     setEventLogo,
