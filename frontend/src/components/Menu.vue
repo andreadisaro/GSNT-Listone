@@ -1,7 +1,10 @@
 <script setup>
 import { nextTick } from "vue";
 import { useDataStore } from "../store/useDataStore";
+import SvgIcon from "./SvgIcon.vue";
+import { useModalStore } from "../store/useModalStore";
 const dataStore = useDataStore();
+const modalStore = useModalStore();
 const vaiACategoria = (i) => {
   dataStore.showMenu = false;
   nextTick(() => {
@@ -34,6 +37,7 @@ const setFilter = (filter) => {
           {{ catI }}
         </div>
       </div>
+      <hr />
       <div class="flex">Mostra:</div>
       <div class="ml-4">
         <div class="flex flex-row" @click="setFilter('showAll')">
@@ -92,6 +96,12 @@ const setFilter = (filter) => {
           </div>
           <div class="flex-1">Solo gli elementi con nessuna preferenza</div>
         </div>
+      </div>
+      <hr />
+      <div class="flex" @click="modalStore.showInstructionsModal">
+        <SvgIcon name="Info" class="h-4 w-4 my-auto mr-2" /><span
+          >Mostra istruzioni</span
+        >
       </div>
     </div>
   </div>

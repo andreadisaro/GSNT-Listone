@@ -129,13 +129,6 @@ export const useDataStore = defineStore("data", () => {
     },
     { deep: true }
   );
-  watch(
-    () => showFilter.value,
-    (itemsP) => {
-      console.log("showFilter", itemsP);
-    },
-    { deep: true }
-  );
   function setJournalistsDays(journalistsDaysP) {
     let ret = {};
     let daysI = [];

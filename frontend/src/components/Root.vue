@@ -2,12 +2,17 @@
 import { useDataStore } from "../store/useDataStore";
 import { APISettings } from "../api/config.js";
 import { useLoadingStore } from "../store/useLoadingStore";
+import { useModalStore } from "../store/useModalStore";
 import List from "./List.vue";
 import Menu from "./Menu.vue";
 const loadingStore = useLoadingStore();
+const modalStore = useModalStore();
 const dataStore = useDataStore();
 const errorFunction = () => {
-  alert("Errore di connessione, riprova più tardi");
+  modalStore.showInfoModal(
+    "Errore",
+    "Errore di connessione, riprova più tardi"
+  );
 };
 loadingStore.addLoading();
 fetch("/public/api/event", {
@@ -48,6 +53,7 @@ fetch("/public/api/items", {
   .finally(() => {
     loadingStore.removeLoading();
   });
+loadingStore.addLoading();
 fetch("/public/api/journalists", {
   method: "GET",
   headers: APISettings.headers,
