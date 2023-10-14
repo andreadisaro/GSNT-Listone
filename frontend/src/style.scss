@@ -51,15 +51,21 @@ body {
   }
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
-}
-
-body {
   margin: 0;
   min-height: 100vh;
+  background-color: #ecf4e5;
 }
 
 #app {
   min-height: 100vh;
+}
+
+.titoloRosso {
+  color: #cd2c31;
+}
+
+.sfondoVerdeSemiTrasparente {
+  background-color: rgba(92, 160, 64, 0.3);
 }
 
 /*

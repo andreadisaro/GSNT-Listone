@@ -22,7 +22,9 @@ const setFilter = (filter) => {
     class="w-full text-center items-stretch flex flex-col p-8 pt-20 min-h-[95vh]"
   >
     <div class="w-full items-center flex-1">
-      <div class="flex font-extrabold justify-around">Menu</div>
+      <div class="flex font-extrabold justify-end titoloRosso text-xl">
+        MENU
+      </div>
       <div class="flex">Vai a:</div>
       <div
         v-for="(category, catI, i) in dataStore.items"
@@ -35,6 +37,14 @@ const setFilter = (filter) => {
           @click="vaiACategoria(i)"
         >
           {{ catI }}
+        </div>
+      </div>
+      <div class="ml-4">
+        <div
+          class="flex font-extrabold my-2"
+          @click="vaiACategoria('redazione')"
+        >
+          {{ $t("REDAZIONE") }}
         </div>
       </div>
       <hr class="my-2" />

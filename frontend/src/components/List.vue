@@ -3,12 +3,21 @@ import { ref, watch } from "vue";
 import { useDataStore } from "../store/useDataStore";
 import Item from "./Item.vue";
 import ItemJournalist from "./ItemJournalist.vue";
+import SvgIcon from "./SvgIcon.vue";
 const dataStore = useDataStore();
 const catRefs = ref([]);
+const redazioneRef = ref(null);
 watch(
   () => dataStore.goToRef,
   (newVal) => {
     if (newVal) {
+      if (newVal === "redazione") {
+        redazioneRef.value.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+        return;
+      }
       catRefs.value[newVal].scrollIntoView({
         behavior: "smooth",
         block: "start",
@@ -33,7 +42,10 @@ watch(
           }
         "
       >
-        <div class="flex font-extrabold" :class="i > 0 ? 'my-8' : ''">
+        <div
+          class="flex font-extrabold justify-end titoloRosso text-xl"
+          :class="i > 0 ? 'my-8' : ''"
+        >
           {{ catI }}
         </div>
         <div
@@ -42,13 +54,22 @@ watch(
           class="flex-1"
           :class="j > 0 ? 'mt-4' : ''"
         >
-          <div class="flex flex-row">
-            <div class="w-6">A</div>
-            <div class="w-6">P</div>
-            <div class="w-6">
-              {{ editor.length && editor[0].bookType ? "L" : "B" }}
+          <div class="flex flex-row space-x-2">
+            <div class="w-6 sfondoVerdeSemiTrasparente py-1">
+              <SvgIcon name="look" class="h-6 w-6 my-auto" />
             </div>
-            <div class="font-semibold flex-1">{{ editorI }}</div>
+            <div class="w-6 sfondoVerdeSemiTrasparente py-1">
+              <SvgIcon name="try" class="h-6 w-6 my-auto" />
+            </div>
+            <div class="w-6 sfondoVerdeSemiTrasparente py-1">
+              <img
+                src="../assets/book-24.png"
+                class="my-auto"
+                v-if="editor.length && editor[0].bookType"
+              />
+              <SvgIcon name="buy" class="h-6 w-6 my-auto" v-else />
+            </div>
+            <div class="font-semibold flex-1 pt-1">{{ editorI }}</div>
           </div>
           <div v-for="item in editor" :key="'item' + item.id" class="flex-1">
             <Item :item="item" />
@@ -56,12 +77,20 @@ watch(
         </div>
       </div>
       <div>
-        <div class="flex font-extrabold my-8">{{ $t("Redazione") }}</div>
-        <div class="flex flex-row">
-          <div class="w-6" v-for="day in dataStore.days" :key="day + 'title'">
+        <div
+          class="flex font-extrabold justify-end titoloRosso text-xl my-8"
+          ref="redazioneRef"
+        >
+          {{ $t("REDAZIONE") }}
+        </div>
+        <div class="flex flex-row space-x-2">
+          <div
+            class="w-6 font-bold sfondoVerdeSemiTrasparente"
+            v-for="day in dataStore.days"
+            :key="day + 'title'"
+          >
             {{ day }}
           </div>
-          <div class="font-semibold flex-1">&nbsp;</div>
         </div>
         <div
           v-for="(jd, jdI) in dataStore.journalistsDays"
