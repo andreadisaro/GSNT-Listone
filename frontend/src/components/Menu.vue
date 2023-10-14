@@ -37,7 +37,7 @@ const setFilter = (filter) => {
           {{ catI }}
         </div>
       </div>
-      <hr />
+      <hr class="my-2" />
       <div class="flex">Mostra:</div>
       <div class="ml-4">
         <div class="flex flex-row" @click="setFilter('showAll')">
@@ -97,11 +97,59 @@ const setFilter = (filter) => {
           <div class="flex-1">Solo gli elementi con nessuna preferenza</div>
         </div>
       </div>
-      <hr />
+      <hr class="my-2" />
       <div class="flex" @click="modalStore.showInstructionsModal">
         <SvgIcon name="Info" class="h-4 w-4 my-auto mr-2" /><span
           >Mostra istruzioni</span
         >
+      </div>
+      <hr class="my-2" />
+      <div class="flex flex-col">
+        <div class="flex flex-row justify-between">
+          <a href="https://www.giochisulnostrotavolo.it" target="_blank"
+            ><SvgIcon name="Website" class="h-12 w-12 my-auto"
+          /></a>
+          <a
+            href="https://www.facebook.com/GiochiSulNostroTavolo/"
+            target="_blank"
+            ><SvgIcon name="Facebook" class="h-12 w-12 my-auto"
+          /></a>
+          <a href="https://twitter.com/giochisntavolo" target="_blank"
+            ><SvgIcon name="Twitter-X" class="h-12 w-12 my-auto"
+          /></a>
+        </div>
+        <div class="flex flex-row justify-between">
+          <a
+            href="https://www.youtube.com/channel/UCIZlT-GQY9BgSmJvqG04GSQ"
+            target="_blank"
+            ><SvgIcon name="Youtube" class="h-12 w-12 my-auto"
+          /></a>
+          <a href="https://t.me/giochisulnostrotavolo" target="_blank"
+            ><SvgIcon name="Telegram" class="h-12 w-12 my-auto"
+          /></a>
+          <a
+            href="https://www.instagram.com/giochisulnostrotavolo/"
+            target="_blank"
+            ><SvgIcon name="Instagram" class="h-12 w-12 my-auto"
+          /></a>
+        </div>
+        <div class="flex flex-row justify-between">
+          <a
+            href="https://www.giochisulnostrotavolo.it/category/approfondimenti/podcast/"
+            target="_blank"
+            ><SvgIcon
+              name="Headphones"
+              class="h-12 w-12 my-auto fill-[#5ca040]"
+          /></a>
+          <a
+            href="https://www.tiktok.com/@giochisulnostrotavolo?is_from_webapp=1&amp;sender_device=pc"
+            target="_blank"
+            ><SvgIcon name="TikTok" class="h-12 w-12 my-auto"
+          /></a>
+          <a href="https://www.giochisulnostrotavolo.it/feed/" target="_blank"
+            ><SvgIcon name="Rss" class="h-12 w-12 my-auto fill-[#f26522]"
+          /></a>
+        </div>
       </div>
     </div>
   </div>
