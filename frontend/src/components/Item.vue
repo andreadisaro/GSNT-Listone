@@ -35,7 +35,7 @@ defineProps({
       />
       <SvgIcon name="Forbidden" class="h-4 w-4 m-auto" v-else />
     </div>
-    <div class="flex-1">
+    <div class="flex flex-1 text-start">
       {{ item.name }}
     </div>
   </div>
