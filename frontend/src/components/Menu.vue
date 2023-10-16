@@ -47,6 +47,11 @@ const setFilter = (filter) => {
           {{ $t("REDAZIONE") }}
         </div>
       </div>
+      <div class="ml-4">
+        <div class="flex font-extrabold my-2" @click="vaiACategoria('legenda')">
+          {{ $t("LEGENDA") }}
+        </div>
+      </div>
       <hr class="my-2 border-black" />
       <div class="flex">Mostra:</div>
       <div class="ml-4">

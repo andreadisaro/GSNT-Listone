@@ -7,12 +7,19 @@ import SvgIcon from "./SvgIcon.vue";
 const dataStore = useDataStore();
 const catRefs = ref([]);
 const redazioneRef = ref(null);
+const legendaRef = ref(null);
 watch(
   () => dataStore.goToRef,
   (newVal) => {
     if (newVal) {
       if (newVal === "redazione") {
         redazioneRef.value.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+        return;
+      } else if (newVal === "legenda") {
+        legendaRef.value.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
@@ -98,6 +105,43 @@ watch(
           class="flex-1"
         >
           <ItemJournalist :item="jd" :journalist="jdI" />
+        </div>
+      </div>
+      <div>
+        <div
+          class="flex font-extrabold justify-end titoloRosso text-xl my-8"
+          ref="legendaRef"
+        >
+          {{ $t("LEGENDA") }}
+        </div>
+        <div class="flex flex-col space-y-1">
+          <div class="flex">
+            <SvgIcon name="look" class="h-6 w-6 my-auto mr-2" /><span
+              >Vorrei almeno buttarci un occhio</span
+            >
+          </div>
+          <div class="flex">
+            <SvgIcon name="try" class="h-6 w-6 my-auto mr-2" /><span
+              >Voglio farci una partita in Fiera</span
+            >
+          </div>
+          <div class="flex">
+            <SvgIcon name="buy" class="h-6 w-6 my-auto mr-2" /><span
+              >Questo torna a casa con me</span
+            >
+          </div>
+          <div class="flex">
+            <img src="../assets/book-24.png" class="my-auto mr-2" /><span
+              class="text-start"
+              >R= Romanzo L = Librogame<br />
+              G = Giornale F = Fumetto Game</span
+            >
+          </div>
+          <div class="flex">
+            <SvgIcon name="Forbidden" class="h-6 w-6 my-auto mr-2" /><span
+              >Il Titolo non è provabile o comprabile</span
+            >
+          </div>
         </div>
       </div>
     </div>
