@@ -47,73 +47,87 @@ const setFilter = (filter) => {
           {{ $t("REDAZIONE") }}
         </div>
       </div>
-      <hr class="my-2" />
+      <hr class="my-2 border-black" />
       <div class="flex">Mostra:</div>
       <div class="ml-4">
         <div class="flex flex-row" @click="setFilter('showAll')">
           <div class="w-6">
             <input
+              class="w-4 h-4"
               type="checkbox"
               :checked="dataStore.showFilter === 'showAll'"
             />
           </div>
-          <div class="flex-1">Tutti gli elementi</div>
+          <div class="flex flex-1 text-start">Tutti gli elementi</div>
         </div>
         <div class="flex flex-row" @click="setFilter('showOnlyLook')">
           <div class="w-6">
             <input
+              class="w-4 h-4"
               type="checkbox"
               :checked="dataStore.showFilter === 'showOnlyLook'"
             />
           </div>
-          <div class="flex-1">Solo gli elementi che voglio visionare</div>
+          <div class="flex flex-1 text-start">
+            Solo gli elementi che voglio visionare
+          </div>
         </div>
         <div class="flex flex-row" @click="setFilter('showOnlyPlay')">
           <div class="w-6">
             <input
+              class="w-4 h-4"
               type="checkbox"
               :checked="dataStore.showFilter === 'showOnlyPlay'"
             />
           </div>
-          <div class="flex-1">Solo gli elementi che voglio giocare</div>
+          <div class="flex flex-1 text-start">
+            Solo gli elementi che voglio giocare
+          </div>
         </div>
         <div class="flex flex-row" @click="setFilter('showOnlyBuy')">
           <div class="w-6">
             <input
+              class="w-4 h-4"
               type="checkbox"
               :checked="dataStore.showFilter === 'showOnlyBuy'"
             />
           </div>
-          <div class="flex-1">Solo gli elementi che voglio comprare</div>
+          <div class="flex flex-1 text-start">
+            Solo gli elementi che voglio comprare
+          </div>
         </div>
         <div class="flex flex-row" @click="setFilter('showOnlySomething')">
           <div class="w-6">
             <input
+              class="w-4 h-4"
               type="checkbox"
               :checked="dataStore.showFilter === 'showOnlySomething'"
             />
           </div>
-          <div class="flex-1">
+          <div class="flex flex-1 text-start">
             Solo gli elementi con una qualsiasi preferenza
           </div>
         </div>
         <div class="flex flex-row" @click="setFilter('showOnlyNothing')">
           <div class="w-6">
             <input
+              class="w-4 h-4"
               type="checkbox"
               :checked="dataStore.showFilter === 'showOnlyNothing'"
             />
           </div>
-          <div class="flex-1">Solo gli elementi con nessuna preferenza</div>
+          <div class="flex flex-1 text-start">
+            Solo gli elementi con nessuna preferenza
+          </div>
         </div>
       </div>
-      <hr class="my-2" />
+      <hr class="my-2 border-black" />
       <div class="flex" @click="modalStore.showInstructionsModal">
         <SvgIcon name="Info" class="h-4 w-4 my-auto mr-2" /><span
           >Mostra istruzioni</span
         >
       </div>
-      <hr class="my-2" />
+      <hr class="my-2 border-black" />
       <div class="flex flex-col">
         <div class="flex flex-row justify-between">
           <a href="https://www.giochisulnostrotavolo.it" target="_blank"
