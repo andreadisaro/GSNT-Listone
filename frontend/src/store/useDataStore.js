@@ -1,5 +1,6 @@
 import { ref, watch, computed } from "vue";
 import { defineStore } from "pinia";
+import fakeItems from "./fakeItems";
 
 export const useDataStore = defineStore("data", () => {
   const eventTitle = ref(localStorage.getItem("eventTitle") || "");
@@ -23,6 +24,9 @@ export const useDataStore = defineStore("data", () => {
   function setEventLogo(eventLogoP) {
     eventLogo.value = eventLogoP;
     localStorage.setItem("eventLogo", eventLogoP);
+  }
+  function setFakeItems() {
+    items_.value = fakeItems;
   }
   function setItems(itemsP) {
     let itemsTmp = {};
@@ -202,6 +206,7 @@ export const useDataStore = defineStore("data", () => {
     setEventTitle,
     setEventLogo,
     setItems,
+    setFakeItems,
     setJournalistsDays,
   };
 });
