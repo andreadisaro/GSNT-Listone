@@ -8,13 +8,17 @@ import SvgIcon from "./SvgIcon.vue";
   <div
     class="w-full items-center px-4 flex flex-row justify-between align-middle header py-1 z-40"
   >
-    <SvgIcon
+    <!--SvgIcon
       :name="dataStore.eventLogo"
       class="h-12 w-12 my-auto"
       v-if="dataStore.eventLogo"
-    />
-    <div class="text-[23px] font-bold w-full flex-1 text-center">
+    /-->
+    <img src="../assets/lucca.jpg" class="h-12 w-12 my-auto" />
+    <!--div class="text-[23px] font-bold w-full flex-1 text-center">
       {{ dataStore.eventTitle }}
+    </div-->
+    <div class="text-[23px] font-bold w-full flex-1 text-center">
+      LUCCA C&G 2023
     </div>
     <SvgIcon
       name="Hamburger_icon"

@@ -17,6 +17,7 @@ const errorFunction = () => {
     "Errore di connessione, riprova più tardi"
   );
 };
+/*
 loadingStore.addLoading();
 fetch("/public/api/event", {
   method: "GET",
@@ -37,6 +38,7 @@ fetch("/public/api/event", {
   .finally(() => {
     loadingStore.removeLoading();
   });
+  */
 if (!fake) {
   loadingStore.addLoading();
   fetch("/public/api/items", {
