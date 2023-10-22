@@ -7,7 +7,9 @@ import { useRouter } from "vue-router";
 import { ref, watch, nextTick } from "vue";
 // non rimuovere, serve per il pdf
 import jsPDF from "jspdf";
-import Vue3Html2pdf from "vue3-html2pdf";
+import pdfMake from "pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import htmlToPdfmake from "html-to-pdfmake";
 import List from "./List.vue";
 import ListForPrint from "./ListForPrint.vue";
 import Menu from "./Menu.vue";
@@ -91,10 +93,15 @@ watch(
   () => dataStore.makePdf,
   (newValue) => {
     if (newValue) {
-      loadingStore.addLoading();
+      //loadingStore.addLoading();
       nextTick(() => {
-        console.log("genero pdf");
-        html2Pdf.value.generatePdf();
+        console.log("genero pdf", html2Pdf.value.$el.innerHTML);
+        //html to pdf format
+        var html = htmlToPdfmake(html2Pdf.value.$el.innerHTML);
+
+        const documentDefinition = { content: html };
+        pdfMake.vfs = pdfFonts.pdfMake.vfs;
+        pdfMake.createPdf(documentDefinition).open();
         dataStore.makePdf = false;
       });
     }
@@ -125,29 +132,8 @@ async function beforeDownload({ html2pdf, options, pdfContent }) {
 
 <template>
   <Menu v-if="dataStore.showMenu" />
-  <ListForPrint v-else />
-  <div>
-    <vue3-html2pdf
-      :show-layout="false"
-      :float-layout="true"
-      :enable-download="true"
-      :preview-modal="false"
-      filename="ListonaLucca23"
-      :pdf-quality="2"
-      :manual-pagination="false"
-      :paginate-elements-by-height="1100"
-      pdf-format="a4"
-      pdf-orientation="portrait"
-      pdf-content-width="800px"
-      ref="html2Pdf"
-      @beforeDownload="beforeDownload($event)"
-      @hasDownloaded="loadingStore.removeLoading()"
-    >
-      <template v-slot:pdf-content>
-        <ListForPrint />
-      </template>
-    </vue3-html2pdf>
-  </div>
+  <List v-else />
+  <ListForPrint ref="html2Pdf" />
 </template>
 
 <style scoped></style>
