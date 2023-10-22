@@ -163,8 +163,7 @@ const computedGdtDx = computed(() => {
             >
           </div>
           <div class="flex">
-            <img src="../assets/book-24.png" class="my-auto mr-2" /><span
-              class="text-start"
+            <span class="text-start"
               >R= Romanzo L = Librogame<br />
               G = Giornale F = Fumetto Game</span
             >
