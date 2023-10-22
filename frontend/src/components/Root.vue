@@ -5,9 +5,7 @@ import { useLoadingStore } from "../store/useLoadingStore";
 import { useModalStore } from "../store/useModalStore";
 import { useRouter } from "vue-router";
 import { ref, watch, nextTick } from "vue";
-// non rimuovere, serve per il pdf
-import jsPDF from "jspdf";
-import Vue3Html2pdf from "vue3-html2pdf";
+import html2pdf from "html2pdf.js";
 import List from "./List.vue";
 import ListForPrint from "./ListForPrint.vue";
 import Menu from "./Menu.vue";
@@ -94,7 +92,30 @@ watch(
       loadingStore.addLoading();
       nextTick(() => {
         console.log("genero pdf");
-        html2Pdf.value.generatePdf();
+        html2pdf()
+          .set({
+            margin: 0.2,
+            filename: "ListonaLucca23.pdf",
+            pagebreak: { after: ".sautDePage" },
+            image: {
+              type: "jpeg",
+              quality: 2,
+            },
+            html2canvas: {
+              scale: 2,
+              letterRendering: true,
+            },
+            jsPDF: {
+              unit: "mm",
+              format: "a4",
+              orientation: "portrait",
+            },
+          })
+          .from(html2Pdf.value.$el.innerHTML)
+          .save()
+          .then(() => {
+            loadingStore.removeLoading();
+          });
         dataStore.makePdf = false;
       });
     }
@@ -125,29 +146,8 @@ async function beforeDownload({ html2pdf, options, pdfContent }) {
 
 <template>
   <Menu v-if="dataStore.showMenu" />
-  <ListForPrint v-else />
-  <div>
-    <vue3-html2pdf
-      :show-layout="false"
-      :float-layout="true"
-      :enable-download="true"
-      :preview-modal="false"
-      filename="ListonaLucca23"
-      :pdf-quality="2"
-      :manual-pagination="false"
-      :paginate-elements-by-height="1100"
-      pdf-format="a4"
-      pdf-orientation="portrait"
-      pdf-content-width="800px"
-      ref="html2Pdf"
-      @beforeDownload="beforeDownload($event)"
-      @hasDownloaded="loadingStore.removeLoading()"
-    >
-      <template v-slot:pdf-content>
-        <ListForPrint />
-      </template>
-    </vue3-html2pdf>
-  </div>
+  <List v-else />
+  <ListForPrint ref="html2Pdf" />
 </template>
 
 <style scoped></style>
