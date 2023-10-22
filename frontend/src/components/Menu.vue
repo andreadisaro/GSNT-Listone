@@ -133,6 +133,12 @@ const setFilter = (filter) => {
         >
       </div>
       <hr class="my-2 border-black" />
+      <div class="flex" @click="dataStore.setMakePdfTrue">
+        <SvgIcon name="Info" class="h-4 w-4 my-auto mr-2" /><span
+          >Esporta PDF</span
+        >
+      </div>
+      <hr class="my-2 border-black" />
       <div class="flex flex-col">
         <div class="flex flex-row justify-between">
           <a href="https://www.giochisulnostrotavolo.it" target="_blank"

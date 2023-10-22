@@ -14,6 +14,10 @@ export const useDataStore = defineStore("data", () => {
   const showMenu = ref(false);
   const goToRef = ref(null);
   const showFilter = ref("showAll");
+  const makePdf = ref(false);
+  function setMakePdfTrue() {
+    makePdf.value = true;
+  }
   function setShowFilter(showFilterP) {
     showFilter.value = showFilterP;
   }
@@ -202,6 +206,8 @@ export const useDataStore = defineStore("data", () => {
     showMenu,
     goToRef,
     showFilter,
+    makePdf,
+    setMakePdfTrue,
     setShowFilter,
     setEventTitle,
     setEventLogo,
