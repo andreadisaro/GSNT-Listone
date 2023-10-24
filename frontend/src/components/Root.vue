@@ -44,7 +44,7 @@ fetch("/public/api/event", {
   });
   */
 if (!fake) {
-  loadingStore.addLoading();
+  if (Object.entries(dataStore.items).length == 0) loadingStore.addLoading();
   fetch("/public/api/items", {
     method: "GET",
     headers: APISettings.headers,
@@ -66,25 +66,20 @@ if (!fake) {
 } else {
   dataStore.setFakeItems();
 }
-loadingStore.addLoading();
 fetch("/public/api/journalists", {
   method: "GET",
   headers: APISettings.headers,
-})
-  .then(function (response) {
-    if (response.status != 200) {
-      console.error(response.status);
-      errorFunction();
-    } else {
-      response.json().then((res) => {
-        console.log(res);
-        dataStore.setJournalistsDays(res);
-      });
-    }
-  })
-  .finally(() => {
-    loadingStore.removeLoading();
-  });
+}).then(function (response) {
+  if (response.status != 200) {
+    console.error(response.status);
+    errorFunction();
+  } else {
+    response.json().then((res) => {
+      console.log(res);
+      dataStore.setJournalistsDays(res);
+    });
+  }
+});
 watch(
   () => dataStore.makePdf,
   (newValue) => {
