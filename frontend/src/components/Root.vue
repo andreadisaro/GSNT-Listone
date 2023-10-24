@@ -52,7 +52,7 @@ if (!fake) {
     .then(function (response) {
       if (response.status != 200) {
         console.error(response.status);
-        errorFunction();
+        if (Object.entries(dataStore.items).length == 0) errorFunction();
       } else {
         response.json().then((res) => {
           console.log(res);
@@ -72,7 +72,7 @@ fetch("/be/public/api/journalists", {
 }).then(function (response) {
   if (response.status != 200) {
     console.error(response.status);
-    errorFunction();
+    //errorFunction();
   } else {
     response.json().then((res) => {
       console.log(res);
