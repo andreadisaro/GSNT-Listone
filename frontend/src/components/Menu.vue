@@ -139,6 +139,14 @@ const setFilter = (filter) => {
         >
       </div>
       <hr class="my-2 border-black" />
+      <a href="https://ko-fi.com/giochisulnostrotavolo" target="_blank">
+        <div class="flex">
+          <SvgIcon name="Kofi" class="h-4 w-4 my-auto mr-1.5 ml-0.5" /><span
+            >Offrici un caffè</span
+          >
+        </div></a
+      >
+      <hr class="my-2 border-black" />
       <div class="flex flex-col">
         <div class="flex flex-row justify-between">
           <a href="https://www.giochisulnostrotavolo.it" target="_blank"
