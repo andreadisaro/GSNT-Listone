@@ -16,10 +16,16 @@ export default defineConfig({
       // string shorthand: http://localhost:5173/foo -> http://localhost:4567/foo
       //"/public": "http://localhost:8089",
       // with options: http://localhost:5173/api/bar-> http://jsonplaceholder.typicode.com/bar
-      "/public": {
+      "/be": {
         target: host,
         changeOrigin: true,
-        //rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) => {
+          if (host.indexOf("localhost") != -1) {
+            return path.replace(/^\/be/, "");
+          } else {
+            return path;
+          }
+        },
       },
       // with RegEx: http://localhost:5173/fallback/ -> http://jsonplaceholder.typicode.com/
       /*

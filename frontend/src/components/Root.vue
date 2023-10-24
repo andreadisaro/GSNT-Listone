@@ -23,7 +23,7 @@ const errorFunction = () => {
 };
 /*
 loadingStore.addLoading();
-fetch("/public/api/event", {
+fetch("/be/public/api/event", {
   method: "GET",
   headers: APISettings.headers,
 })
@@ -45,7 +45,7 @@ fetch("/public/api/event", {
   */
 if (!fake) {
   if (Object.entries(dataStore.items).length == 0) loadingStore.addLoading();
-  fetch("/public/api/items", {
+  fetch("/be/public/api/items", {
     method: "GET",
     headers: APISettings.headers,
   })
@@ -66,7 +66,7 @@ if (!fake) {
 } else {
   dataStore.setFakeItems();
 }
-fetch("/public/api/journalists", {
+fetch("/be/public/api/journalists", {
   method: "GET",
   headers: APISettings.headers,
 }).then(function (response) {
