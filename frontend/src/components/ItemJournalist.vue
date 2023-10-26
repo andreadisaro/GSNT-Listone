@@ -20,7 +20,7 @@ defineProps({
         :name="item[day] ? 'CheckboxFull' : 'CheckboxEmpty'"
       />
     </div>
-    <div class="flex-1">{{ journalist }}</div>
+    <div class="flex flex-1 text-start">{{ journalist }}</div>
   </div>
 </template>
 
