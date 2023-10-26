@@ -7,6 +7,7 @@ export const useModalStore = defineStore("modal", () => {
   const showInfo = ref(false);
   const infoTitle = ref("");
   const infoMessage = ref("");
+  const showPDF = ref(false);
   /*
   const showError = ref(false);
   const showSuccess = ref(false);
@@ -53,6 +54,12 @@ export const useModalStore = defineStore("modal", () => {
   if (showInstructions.value) {
     showInstructionsModal();
   }
+  function showPDFModal() {
+    showPDF.value = true;
+  }
+  function hideConfirmPDFModal() {
+    showPDF.value = false;
+  }
 
   return {
     /*showError,
@@ -68,6 +75,9 @@ export const useModalStore = defineStore("modal", () => {
     showInfo,
     infoTitle,
     infoMessage,
+    showPDF,
+    showPDFModal,
+    hideConfirmPDFModal,
     showInfoModal,
     hideInfoModal,
     showInstructionsModal,

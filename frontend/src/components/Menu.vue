@@ -133,7 +133,7 @@ const setFilter = (filter) => {
         >
       </div>
       <hr class="my-2 border-black" />
-      <div class="flex" @click="dataStore.setMakePdfTrue">
+      <div class="flex" @click="modalStore.showPDFModal">
         <SvgIcon name="Doc" class="h-4 w-4 my-auto mr-2" /><span
           >Esporta PDF</span
         >

@@ -87,46 +87,50 @@ watch(
       loadingStore.addLoading();
       nextTick(() => {
         console.log("genero pdf");
-        html2pdf()
-          .set({
-            margin: 0,
-            filename: "ListonaLucca23.pdf",
-            pagebreak: { mode: "avoid-all" },
-            image: {
-              type: "jpeg",
-              quality: 2,
-            },
-            html2canvas: {
-              scale: 2,
-              letterRendering: true,
-            },
-            jsPDF: {
-              unit: "in",
-              format: "a4",
-              orientation: "portrait",
-            },
-          })
-          .from(html2Pdf.value.$el.innerHTML)
-          .toPdf()
-          .get("pdf")
-          .then((pdf) => {
-            const totalPages = pdf.internal.getNumberOfPages();
-            for (let i = 1; i <= totalPages; i++) {
-              pdf.setPage(i);
-              pdf.setFontSize(10);
-              pdf.setTextColor(150);
-              pdf.text(
-                "Pagina " + i + " di " + totalPages,
-                pdf.internal.pageSize.getWidth() * 0.88,
-                pdf.internal.pageSize.getHeight() - 0.3
-              );
-            }
-          })
-          .save()
-          .then(() => {
-            loadingStore.removeLoading();
-          });
-        dataStore.makePdf = false;
+        setTimeout(
+          () =>
+            html2pdf()
+              .set({
+                margin: 0,
+                filename: "ListonaLucca23.pdf",
+                pagebreak: { mode: "avoid-all" },
+                image: {
+                  type: "jpeg",
+                  quality: 2,
+                },
+                html2canvas: {
+                  scale: 2,
+                  letterRendering: true,
+                },
+                jsPDF: {
+                  unit: "in",
+                  format: "a4",
+                  orientation: "portrait",
+                },
+              })
+              .from(html2Pdf.value.$el.innerHTML)
+              .toPdf()
+              .get("pdf")
+              .then((pdf) => {
+                const totalPages = pdf.internal.getNumberOfPages();
+                for (let i = 1; i <= totalPages; i++) {
+                  pdf.setPage(i);
+                  pdf.setFontSize(10);
+                  pdf.setTextColor(150);
+                  pdf.text(
+                    "Pagina " + i + " di " + totalPages,
+                    pdf.internal.pageSize.getWidth() * 0.88,
+                    pdf.internal.pageSize.getHeight() - 0.3
+                  );
+                }
+              })
+              .save()
+              .then(() => {
+                loadingStore.removeLoading();
+                dataStore.makePdf = false;
+              }),
+          500
+        );
       });
     }
   }
