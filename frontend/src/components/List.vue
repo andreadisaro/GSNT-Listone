@@ -115,29 +115,29 @@ watch(
           {{ $t("LEGENDA") }}
         </div>
         <div class="flex flex-col space-y-1">
-          <div class="flex">
+          <div class="flex flex-1 text-start">
             <SvgIcon name="look" class="h-6 w-6 my-auto mr-2" /><span
               >Vorrei almeno buttarci un occhio</span
             >
           </div>
-          <div class="flex">
+          <div class="flex flex-1 text-start">
             <SvgIcon name="try" class="h-6 w-6 my-auto mr-2" /><span
               >Voglio farci una partita in Fiera</span
             >
           </div>
-          <div class="flex">
+          <div class="flex flex-1 text-start">
             <SvgIcon name="buy" class="h-6 w-6 my-auto mr-2" /><span
               >Questo torna a casa con me</span
             >
           </div>
-          <div class="flex">
+          <div class="flex flex-1 text-start">
             <img src="../assets/book-24.png" class="my-auto mr-2" /><span
               class="text-start"
               >R= Romanzo L = Librogame<br />
               G = Giornale F = Fumetto Game</span
             >
           </div>
-          <div class="flex">
+          <div class="flex flex-1 text-start">
             <SvgIcon name="Forbidden" class="h-6 w-6 my-auto mr-2" /><span
               >Il Titolo non è provabile o comprabile</span
             >
