@@ -28,8 +28,13 @@ defineProps({
       </template>
       <SvgIcon name="Forbidden" class="h-4 w-4 mt-[1px]" v-else />
     </div>
-    <div class="flex w-6 sfondoVerdeSemiTrasparente justify-center py-0.5">
-      <span v-if="item.bookType" class="font-bold">{{ item.bookType }}</span>
+    <div
+      class="flex w-6 sfondoVerdeSemiTrasparente justify-center"
+      :class="{ 'py-0.5': !item.bookType }"
+    >
+      <span v-if="item.bookType" class="font-bold -mt-2">{{
+        item.bookType
+      }}</span>
       <template v-else-if="item.isBuyable">
         <SvgIcon name="CheckboxFull" class="h-5 w-5" v-if="item.buy" />
         <SvgIcon name="CheckboxEmpty" class="h-5 w-5" v-else />
