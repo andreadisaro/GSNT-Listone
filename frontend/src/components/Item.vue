@@ -17,13 +17,23 @@ defineProps({
       <SvgIcon name="Forbidden" class="h-4 w-4 m-auto" v-else />
     </div>
     <div class="w-6 sfondoVerdeSemiTrasparente">
-      <input
-        class="w-4 h-4"
-        type="checkbox"
-        v-if="item.isPlayable"
-        v-model="item.play"
-      />
-      <SvgIcon name="Forbidden" class="h-4 w-4 m-auto" v-else />
+      <template v-if="item.bookType">
+        <input
+          class="w-4 h-4"
+          type="checkbox"
+          v-model="item.buy"
+          v-if="item.isBuyable"
+        />
+        <SvgIcon name="Forbidden" class="h-4 w-4 m-auto" v-else />
+      </template>
+      <template v-else>
+        <input
+          class="w-4 h-4"
+          type="checkbox"
+          v-if="item.isPlayable"
+          v-model="item.play" />
+        <SvgIcon name="Forbidden" class="h-4 w-4 m-auto" v-else
+      /></template>
     </div>
     <div class="w-6 sfondoVerdeSemiTrasparente">
       <span v-if="item.bookType" class="font-bold">{{ item.bookType }}</span>

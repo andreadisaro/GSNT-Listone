@@ -66,7 +66,12 @@ watch(
               <SvgIcon name="look" class="h-6 w-6 my-auto" />
             </div>
             <div class="w-6 sfondoVerdeSemiTrasparente py-1">
-              <SvgIcon name="try" class="h-6 w-6 my-auto" />
+              <SvgIcon
+                name="buy"
+                class="h-6 w-6 my-auto"
+                v-if="editor.length && editor[0].bookType"
+              />
+              <SvgIcon name="try" class="h-6 w-6 my-auto" v-else />
             </div>
             <div class="w-6 sfondoVerdeSemiTrasparente py-1">
               <img

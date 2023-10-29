@@ -52,7 +52,12 @@ const computedItems = computed(() => {
                   <SvgIcon name="look" class="h-6 w-6 my-auto" />
                 </section>
                 <section class="w-6 sfondoVerdeSemiTrasparente py-1">
-                  <SvgIcon name="try" class="h-6 w-6 my-auto" />
+                  <SvgIcon
+                    name="buy"
+                    class="h-6 w-6 my-auto"
+                    v-if="editor.length && editor[0].bookType"
+                  />
+                  <SvgIcon name="try" class="h-6 w-6 my-auto" v-else />
                 </section>
                 <section class="w-6 sfondoVerdeSemiTrasparente py-1">
                   <img
@@ -86,7 +91,12 @@ const computedItems = computed(() => {
                   <SvgIcon name="look" class="h-6 w-6 my-auto" />
                 </section>
                 <section class="w-6 sfondoVerdeSemiTrasparente py-1">
-                  <SvgIcon name="try" class="h-6 w-6 my-auto" />
+                  <SvgIcon
+                    name="buy"
+                    class="h-6 w-6 my-auto"
+                    v-if="editor.length && editor[0].bookType"
+                  />
+                  <SvgIcon name="try" class="h-6 w-6 my-auto" v-else />
                 </section>
                 <section class="w-6 sfondoVerdeSemiTrasparente py-1">
                   <img
