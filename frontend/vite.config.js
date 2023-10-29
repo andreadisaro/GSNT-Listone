@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
+import { readFileSync } from "fs";
 import vue from "@vitejs/plugin-vue";
-let host = "http://localhost:8089";
-//host = "https://listone.giochisulnostrotavolo.it";
+const localhost = false;
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,10 +17,16 @@ export default defineConfig({
       //"/public": "http://localhost:8089",
       // with options: http://localhost:5173/api/bar-> http://jsonplaceholder.typicode.com/bar
       "/be": {
-        target: host,
+        secure: false,
+        target: {
+          protocol: localhost ? "http:" : "https:",
+          host: localhost ? "localhost" : "listone.giochisulnostrotavolo.it",
+          port: localhost ? 8089 : 443,
+          ca: readFileSync("../certificate.crt"),
+        },
         changeOrigin: true,
         rewrite: (path) => {
-          if (host.indexOf("localhost") != -1) {
+          if (localhost) {
             return path.replace(/^\/be/, "");
           } else {
             return path;
