@@ -62,13 +62,17 @@ export const useDataStore = defineStore("data", () => {
       let item = itemsP[i];
       if (
         items_.value[item.category.name] &&
-        items_.value[item.category.name][item.editor.name]
+        items_.value[item.category.name][
+          item.editor.id + "-" + item.editor.name
+        ]
       ) {
         let index = items_.value[item.category.name][
-          item.editor.name
+          item.editor.id + "-" + item.editor.name
         ].findIndex((element) => element.id === item.id);
         item = {
-          ...items_.value[item.category.name][item.editor.name][index],
+          ...items_.value[item.category.name][
+            item.editor.id + "-" + item.editor.name
+          ][index],
           ...item,
         };
       }
@@ -78,10 +82,15 @@ export const useDataStore = defineStore("data", () => {
       if (!itemsTmp[item.category.name]) {
         itemsTmp[item.category.name] = {};
       }
-      if (!itemsTmp[item.category.name][item.editor.name]) {
-        itemsTmp[item.category.name][item.editor.name] = [];
+      if (
+        !itemsTmp[item.category.name][item.editor.id + "-" + item.editor.name]
+      ) {
+        itemsTmp[item.category.name][item.editor.id + "-" + item.editor.name] =
+          [];
       }
-      itemsTmp[item.category.name][item.editor.name].push(item);
+      itemsTmp[item.category.name][
+        item.editor.id + "-" + item.editor.name
+      ].push(item);
     }
 
     items_.value = itemsTmp;

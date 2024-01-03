@@ -1,0 +1,29 @@
+{
+    "name": "GSNTListone-ip",
+    "id": "/subscriptions/86ac6500-0353-41f0-8cdf-830dc77e112b/resourceGroups/Listone/providers/Microsoft.Network/publicIPAddresses/GSNTListone-ip",
+    "etag": "W/\"69be0567-6b76-42e9-bc53-5e2e1fb9702d\"",
+    "location": "northeurope",
+    "zones": [
+        "1"
+    ],
+    "properties": {
+        "provisioningState": "Succeeded",
+        "resourceGuid": "8a568028-0710-45e1-b539-66f366fc8681",
+        "ipAddress": "74.234.40.219",
+        "publicIPAddressVersion": "IPv4",
+        "publicIPAllocationMethod": "Static",
+        "idleTimeoutInMinutes": 4,
+        "dnsSettings": {
+            "domainNameLabel": "listone",
+            "fqdn": "listone.northeurope.cloudapp.azure.com"
+        },
+        "ipTags": [],
+        "ipConfiguration": {
+            "id": "/subscriptions/86ac6500-0353-41f0-8cdf-830dc77e112b/resourceGroups/Listone/providers/Microsoft.Network/networkInterfaces/gsntlistone870_z1/ipConfigurations/ipconfig1"
+        }
+    },
+    "type": "Microsoft.Network/publicIPAddresses",
+    "sku": {
+        "name": "Standard"
+    }
+}

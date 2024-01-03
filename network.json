@@ -1,0 +1,55 @@
+{
+    "name": "gsntlistone870_z1",
+    "id": "/subscriptions/86ac6500-0353-41f0-8cdf-830dc77e112b/resourceGroups/Listone/providers/Microsoft.Network/networkInterfaces/gsntlistone870_z1",
+    "etag": "W/\"ffe281c9-275d-451f-ba7a-09190d6a2e06\"",
+    "properties": {
+        "provisioningState": "Succeeded",
+        "resourceGuid": "ce089c40-47cf-4fbf-ae9e-7856afeb01d3",
+        "ipConfigurations": [
+            {
+                "name": "ipconfig1",
+                "id": "/subscriptions/86ac6500-0353-41f0-8cdf-830dc77e112b/resourceGroups/Listone/providers/Microsoft.Network/networkInterfaces/gsntlistone870_z1/ipConfigurations/ipconfig1",
+                "etag": "W/\"ffe281c9-275d-451f-ba7a-09190d6a2e06\"",
+                "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
+                "properties": {
+                    "provisioningState": "Succeeded",
+                    "privateIPAddress": "10.0.0.4",
+                    "privateIPAllocationMethod": "Dynamic",
+                    "publicIPAddress": {
+                        "id": "/subscriptions/86ac6500-0353-41f0-8cdf-830dc77e112b/resourceGroups/Listone/providers/Microsoft.Network/publicIPAddresses/GSNTListone-ip",
+                        "properties": {
+                            "deleteOption": "Detach"
+                        }
+                    },
+                    "subnet": {
+                        "id": "/subscriptions/86ac6500-0353-41f0-8cdf-830dc77e112b/resourceGroups/Listone/providers/Microsoft.Network/virtualNetworks/GSNTListone-vnet/subnets/default"
+                    },
+                    "primary": true,
+                    "privateIPAddressVersion": "IPv4"
+                }
+            }
+        ],
+        "dnsSettings": {
+            "dnsServers": [],
+            "appliedDnsServers": []
+        },
+        "macAddress": "00-0D-3A-68-1F-1D",
+        "enableAcceleratedNetworking": false,
+        "vnetEncryptionSupported": false,
+        "enableIPForwarding": false,
+        "networkSecurityGroup": {
+            "id": "/subscriptions/86ac6500-0353-41f0-8cdf-830dc77e112b/resourceGroups/Listone/providers/Microsoft.Network/networkSecurityGroups/GSNTListone-nsg"
+        },
+        "primary": true,
+        "virtualMachine": {
+            "id": "/subscriptions/86ac6500-0353-41f0-8cdf-830dc77e112b/resourceGroups/LISTONE/providers/Microsoft.Compute/virtualMachines/GSNTListone"
+        },
+        "hostedWorkloads": [],
+        "tapConfigurations": [],
+        "nicType": "Standard",
+        "auxiliaryMode": "None"
+    },
+    "type": "Microsoft.Network/networkInterfaces",
+    "location": "northeurope",
+    "kind": "Regular"
+}
