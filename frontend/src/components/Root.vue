@@ -92,7 +92,7 @@ watch(
             html2pdf()
               .set({
                 margin: 0,
-                filename: "ListonaLucca23.pdf",
+                filename: "PlayListone24.pdf",
                 pagebreak: { mode: "avoid-all" },
                 image: {
                   type: "jpeg",
