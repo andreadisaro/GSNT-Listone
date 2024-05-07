@@ -81,7 +81,9 @@ watch(
               />
               <SvgIcon name="buy" class="h-6 w-6 my-auto" v-else />
             </div>
-            <div class="font-semibold flex-1 pt-1">{{ editorI }}</div>
+            <div class="font-semibold flex-1 pt-1">
+              {{ dataStore.editors[editorI]?.name || editorI }}
+            </div>
           </div>
           <div v-for="item in editor" :key="'item' + item.id" class="flex-1">
             <Item :item="item" />

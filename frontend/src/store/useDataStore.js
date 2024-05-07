@@ -6,6 +6,7 @@ export const useDataStore = defineStore("data", () => {
   const eventTitle = ref(localStorage.getItem("eventTitle") || "");
   const eventLogo = ref(localStorage.getItem("eventLogo") || "");
   const items_ = ref(JSON.parse(localStorage.getItem("items")) || {});
+  const editors = ref(JSON.parse(localStorage.getItem("editors")) || {});
   const categories = ref(JSON.parse(localStorage.getItem("categories")) || []);
   const journalistsDays = ref(
     JSON.parse(localStorage.getItem("journalistsDays")) || {}
@@ -35,6 +36,7 @@ export const useDataStore = defineStore("data", () => {
   function setItems(itemsP) {
     let itemsTmp = {};
     let categoriesTmp = [];
+    let editorsTmp = {};
     //sort itemsP by category.ordering and editor.name and item.name
     itemsP = itemsP.sort((a, b) => {
       if (a.category.ordering > b.category.ordering) {
@@ -62,16 +64,14 @@ export const useDataStore = defineStore("data", () => {
       let item = itemsP[i];
       if (
         items_.value[item.category.name] &&
-        items_.value[item.category.name][
-          item.editor.id + "-" + item.editor.name
-        ]
+        items_.value[item.category.name][item.editor.id]
       ) {
         let index = items_.value[item.category.name][
-          item.editor.id + "-" + item.editor.name
+          item.editor.id
         ].findIndex((element) => element.id === item.id);
         item = {
           ...items_.value[item.category.name][
-            item.editor.id + "-" + item.editor.name
+            item.editor.id
           ][index],
           ...item,
         };
@@ -83,21 +83,23 @@ export const useDataStore = defineStore("data", () => {
         itemsTmp[item.category.name] = {};
       }
       if (
-        !itemsTmp[item.category.name][item.editor.id + "-" + item.editor.name]
+        !itemsTmp[item.category.name][item.editor.id]
       ) {
-        itemsTmp[item.category.name][item.editor.id + "-" + item.editor.name] =
-          [];
+        itemsTmp[item.category.name][item.editor.id] = [];
+        editorsTmp[item.editor.id] = item.editor;
       }
       itemsTmp[item.category.name][
-        item.editor.id + "-" + item.editor.name
+        item.editor.id
       ].push(item);
     }
 
     items_.value = itemsTmp;
+    editors.value = editorsTmp;
     categories.value = categoriesTmp;
     console.log("items_", itemsTmp);
     console.log("categories", categoriesTmp);
     localStorage.setItem("categories", JSON.stringify(categoriesTmp));
+    localStorage.setItem("editors", JSON.stringify(editorsTmp));
   }
   const items = computed(() => {
     let ret = {};
@@ -209,6 +211,7 @@ export const useDataStore = defineStore("data", () => {
     eventTitle,
     eventLogo,
     items,
+    editors,
     categories,
     journalistsDays,
     days,

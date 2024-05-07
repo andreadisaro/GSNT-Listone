@@ -68,7 +68,7 @@ const computedItems = computed(() => {
                   <SvgIcon name="buy" class="h-6 w-6 my-auto" v-else />
                 </section>
                 <section class="font-semibold flex-1">
-                  {{ editorI }}
+                  {{ dataStore.editors[editorI]?.name || editorI }}
                 </section>
               </section>
               <section
@@ -107,7 +107,7 @@ const computedItems = computed(() => {
                   <SvgIcon name="buy" class="h-6 w-6 my-auto" v-else />
                 </section>
                 <section class="font-semibold flex-1">
-                  {{ editorI }}
+                  {{ dataStore.editors[editorI]?.name || editorI }}
                 </section>
               </section>
               <section
