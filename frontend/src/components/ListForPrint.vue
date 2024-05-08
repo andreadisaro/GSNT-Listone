@@ -155,28 +155,32 @@ const computedItems = computed(() => {
         <section class="flex flex-col space-y-1">
           <section class="flex">
             <SvgIcon name="look" class="h-6 w-6 my-auto mr-2" /><span
+              class="-my-2"
               >Vorrei almeno buttarci un occhio</span
             >
           </section>
           <section class="flex">
             <SvgIcon name="try" class="h-6 w-6 my-auto mr-2" /><span
+              class="-my-2"
               >Voglio farci una partita in Fiera</span
             >
           </section>
           <section class="flex">
             <SvgIcon name="buy" class="h-6 w-6 my-auto mr-2" /><span
-              >Questo torna a casa con me</span
+              class="-my-2"
+              >Questo torna a casa con me (R = Regalo C = Crowfunding)</span
             >
           </section>
-          <section class="flex">
+          <section class="flex py-2">
             <img src="../assets/book-24.png" class="my-auto mr-2" /><span
-              class="text-start"
-              >R= Romanzo L = Librogame<br />
-              G = Giornale F = Fumetto Game</span
+              class="-my-4"
+              >R= Romanzo L = Librogame G = Giornale F = Fumetto Game<br />
+              D = Dizionario W = Wargame 3D</span
             >
           </section>
           <section class="flex">
             <SvgIcon name="Forbidden" class="h-6 w-6 my-auto mr-2" /><span
+              class="-my-2"
               >Il Titolo non è provabile o comprabile</span
             >
           </section>

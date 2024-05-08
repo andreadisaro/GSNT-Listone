@@ -38,6 +38,10 @@ public class Item implements java.io.Serializable {
   @Nullable
   private String bookType;
 
+  @Column
+  @Nullable
+  private String notBuyableType;
+
   @ManyToOne
   @JoinColumn(name = "id_editor")
   private Editor editor;
@@ -92,6 +96,14 @@ public class Item implements java.io.Serializable {
 
   public void setBookType(String bookType) {
     this.bookType = bookType;
+  }
+
+  public String getNotBuyableType() {
+    return notBuyableType;
+  }
+
+  public void setNotBuyableType(String notBuyableType) {
+    this.notBuyableType = notBuyableType;
   }
 
   public Editor getEditor() {

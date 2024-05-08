@@ -32,7 +32,8 @@ defineProps({
       class="flex w-6 sfondoVerdeSemiTrasparente justify-center"
       :class="{ 'py-0.5': !item.bookType }"
     >
-      <span v-if="item.bookType" class="font-bold -mt-2">{{
+      <span v-if="item.notBuyableType" class="font-bold -mt-2.5">{{ item.notBuyableType }}</span>
+      <span v-else-if="item.bookType" class="font-bold -mt-2">{{
         item.bookType
       }}</span>
       <template v-else-if="item.isBuyable">

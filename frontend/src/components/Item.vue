@@ -36,7 +36,8 @@ defineProps({
       /></template>
     </div>
     <div class="w-6 sfondoVerdeSemiTrasparente">
-      <span v-if="item.bookType" class="font-bold">{{ item.bookType }}</span>
+      <span v-if="item.notBuyableType" class="font-bold">{{ item.notBuyableType }}</span>
+      <span v-else-if="item.bookType" class="font-bold">{{ item.bookType }}</span>
       <input
         class="w-4 h-4"
         type="checkbox"

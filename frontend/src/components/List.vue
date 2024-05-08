@@ -134,14 +134,15 @@ watch(
           </div>
           <div class="flex flex-1 text-start">
             <SvgIcon name="buy" class="h-6 w-6 my-auto mr-2" /><span
-              >Questo torna a casa con me</span
+              >Questo torna a casa con me<br />
+              (R = Regalo C = Crowfunding)</span
             >
           </div>
           <div class="flex flex-1 text-start">
             <img src="../assets/book-24.png" class="my-auto mr-2" /><span
-              class="text-start"
               >R= Romanzo L = Librogame<br />
-              G = Giornale F = Fumetto Game</span
+              G = Giornale F = Fumetto Game<br />
+              D = Dizionario W = Wargame 3D</span
             >
           </div>
           <div class="flex flex-1 text-start">
