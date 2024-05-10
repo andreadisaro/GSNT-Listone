@@ -186,7 +186,7 @@ const computedItems = computed(() => {
             <img src="../assets/book-24.png" class="my-auto mr-2" /><span
               class="text-start -my-4"
               >R= Romanzo L = Librogame G = Giornale F = Fumetto Game<br />
-              A = ArtWork D = Dizionario W = Wargame 3D</span
+              A = ArtBook D = Dizionario W = Wargame 3D</span
             >
           </section>
           <section class="flex">
