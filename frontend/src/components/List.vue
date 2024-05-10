@@ -56,38 +56,40 @@ watch(
           {{ catI }}
         </div>
         <div
-          v-for="(editor, editorI, j) in category"
+          v-for="(editor, editorI, j) in dataStore.editors"
           :key="editorI"
           class="flex-1"
           :class="j > 0 ? 'mt-4' : ''"
         >
-          <div class="flex flex-row space-x-2">
-            <div class="w-6 sfondoVerdeSemiTrasparente py-1">
-              <SvgIcon name="look" class="h-6 w-6 my-auto" />
+          <template v-if="category[editor.id]">
+            <div class="flex flex-row space-x-2">
+              <div class="w-6 sfondoVerdeSemiTrasparente py-1">
+                <SvgIcon name="look" class="h-6 w-6 my-auto" />
+              </div>
+              <div class="w-6 sfondoVerdeSemiTrasparente py-1">
+                <SvgIcon
+                  name="buy"
+                  class="h-6 w-6 my-auto"
+                  v-if="category[editor.id].length && category[editor.id][0].bookType"
+                />
+                <SvgIcon name="try" class="h-6 w-6 my-auto" v-else />
+              </div>
+              <div class="w-6 sfondoVerdeSemiTrasparente py-1">
+                <img
+                  src="../assets/book-24.png"
+                  class="my-auto"
+                  v-if="category[editor.id].length && category[editor.id][0].bookType"
+                />
+                <SvgIcon name="buy" class="h-6 w-6 my-auto" v-else />
+              </div>
+              <div class="font-semibold flex-1 pt-1">
+                {{ editor.name || editorI }}
+              </div>
             </div>
-            <div class="w-6 sfondoVerdeSemiTrasparente py-1">
-              <SvgIcon
-                name="buy"
-                class="h-6 w-6 my-auto"
-                v-if="editor.length && editor[0].bookType"
-              />
-              <SvgIcon name="try" class="h-6 w-6 my-auto" v-else />
+            <div v-for="item in category[editor.id]" :key="'item' + item.id" class="flex-1">
+              <Item :item="item" />
             </div>
-            <div class="w-6 sfondoVerdeSemiTrasparente py-1">
-              <img
-                src="../assets/book-24.png"
-                class="my-auto"
-                v-if="editor.length && editor[0].bookType"
-              />
-              <SvgIcon name="buy" class="h-6 w-6 my-auto" v-else />
-            </div>
-            <div class="font-semibold flex-1 pt-1">
-              {{ dataStore.editors[editorI]?.name || editorI }}
-            </div>
-          </div>
-          <div v-for="item in editor" :key="'item' + item.id" class="flex-1">
-            <Item :item="item" />
-          </div>
+          </template>
         </div>
       </div>
       <div>

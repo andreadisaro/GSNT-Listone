@@ -55,7 +55,7 @@ if (!fake) {
         if (Object.entries(dataStore.items).length == 0) errorFunction();
       } else {
         response.json().then((res) => {
-          console.log(res);
+          //console.log(res);
           dataStore.setItems(res);
         });
       }
@@ -75,7 +75,7 @@ fetch("/be/public/api/journalists", {
     //errorFunction();
   } else {
     response.json().then((res) => {
-      console.log(res);
+      //console.log(res);
       dataStore.setJournalistsDays(res);
     });
   }
@@ -140,7 +140,7 @@ watch(
 <template>
   <ListForPrint ref="html2Pdf" class="hidden" />
   <Menu v-if="dataStore.showMenu" />
-  <List v-else />
+  <ListForPrint v-else />
 </template>
 
 <style scoped></style>

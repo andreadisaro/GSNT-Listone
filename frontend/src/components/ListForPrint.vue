@@ -9,19 +9,30 @@ const dataStore = useDataStore();
 const computedItems = computed(() => {
   let ret = {};
   for (const catI in dataStore.items) {
-    ret[catI] = {};
+    ret[catI] = [];
     for (const [index, [editorI, editor]] of Object.entries(
       Object.entries(dataStore.items[catI])
     )) {
       if (index % 2 == 0) {
-        ret[catI][editorI] = editor;
+        ret[catI].push(editor);
       } else {
         if (!ret[catI + "Dx"]) {
-          ret[catI + "Dx"] = {};
+          ret[catI + "Dx"] = [];
         }
-        ret[catI + "Dx"][editorI] = editor;
+        ret[catI + "Dx"].push(editor);
       }
     }
+  }
+  for (const [cat, catI] of Object.entries(ret)) {
+    ret[cat] = ret[cat].sort((a, b) => {
+      if (a[0].editor.name < b[0].editor.name) {
+        return -1;
+      }
+      if (a[0].editor.name > b[0].editor.name) {
+        return 1;
+      }
+      return 0;
+    });
   }
   console.log("computedItems", ret);
   return ret;
@@ -43,8 +54,8 @@ const computedItems = computed(() => {
         <section class="row" v-if="catI.indexOf('Dx') == -1">
           <section class="column">
             <section
-              v-for="(editor, editorI, j) in category"
-              :key="editorI"
+              v-for="(editorItems, editorItemsI, j) in category"
+              :key="editorItemsI"
               class="page-break pt-4"
             >
               <section class="flex flex-row space-x-2">
@@ -55,7 +66,7 @@ const computedItems = computed(() => {
                   <SvgIcon
                     name="buy"
                     class="h-6 w-6 my-auto"
-                    v-if="editor.length && editor[0].bookType"
+                    v-if="editorItems.length && editorItems[0].bookType"
                   />
                   <SvgIcon name="try" class="h-6 w-6 my-auto" v-else />
                 </section>
@@ -63,16 +74,16 @@ const computedItems = computed(() => {
                   <img
                     src="../assets/book-24.png"
                     class="my-auto"
-                    v-if="editor.length && editor[0].bookType"
+                    v-if="editorItems.length && editorItems[0].bookType"
                   />
                   <SvgIcon name="buy" class="h-6 w-6 my-auto" v-else />
                 </section>
                 <section class="font-semibold flex-1">
-                  {{ dataStore.editors[editorI]?.name || editorI }}
+                  {{ editorItems[0].editor.name || editorItemsI }}
                 </section>
               </section>
               <section
-                v-for="(item, i) in editor"
+                v-for="(item, i) in editorItems"
                 :key="'item' + item.id"
                 class="flex-1"
               >
@@ -82,8 +93,8 @@ const computedItems = computed(() => {
           </section>
           <section class="column">
             <section
-              v-for="(editor, editorI, j) in computedItems[catI + 'Dx']"
-              :key="editorI"
+              v-for="(editorItems, editorItemsI, j) in computedItems[catI + 'Dx']"
+              :key="editorItemsI+'Dx'"
               class="page-break pt-4"
             >
               <section class="flex flex-row space-x-2">
@@ -94,7 +105,7 @@ const computedItems = computed(() => {
                   <SvgIcon
                     name="buy"
                     class="h-6 w-6 my-auto"
-                    v-if="editor.length && editor[0].bookType"
+                    v-if="editorItems.length && editorItems[0].bookType"
                   />
                   <SvgIcon name="try" class="h-6 w-6 my-auto" v-else />
                 </section>
@@ -102,16 +113,16 @@ const computedItems = computed(() => {
                   <img
                     src="../assets/book-24.png"
                     class="my-auto"
-                    v-if="editor.length && editor[0].bookType"
+                    v-if="editorItems.length && editorItems[0].bookType"
                   />
                   <SvgIcon name="buy" class="h-6 w-6 my-auto" v-else />
                 </section>
                 <section class="font-semibold flex-1">
-                  {{ dataStore.editors[editorI]?.name || editorI }}
+                  {{ editorItems[0].editor.name || editorItemsI }}
                 </section>
               </section>
               <section
-                v-for="(item, i) in editor"
+                v-for="(item, i) in editorItems"
                 :key="'item' + item.id"
                 class="flex-1"
               >
