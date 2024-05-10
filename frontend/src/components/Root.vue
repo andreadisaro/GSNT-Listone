@@ -140,7 +140,7 @@ watch(
 <template>
   <ListForPrint ref="html2Pdf" class="hidden" />
   <Menu v-if="dataStore.showMenu" />
-  <ListForPrint v-else />
+  <List v-else />
 </template>
 
 <style scoped></style>

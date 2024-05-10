@@ -141,10 +141,9 @@ watch(
             >
           </div>
           <div class="flex flex-1 text-start">
-            <img src="../assets/book-24.png" class="my-auto mr-2" /><span
-              >R= Romanzo L = Librogame<br />
-              G = Giornale F = Fumetto Game<br />
-              D = Dizionario W = Wargame 3D</span
+            <img src="../assets/book-24.png" class="text-start my-auto mr-2" /><span
+              >R= Romanzo L = Librogame<br />G = Giornale F = Fumetto Game<br />
+              A = ArtWork D = Dizionario<br />W = Wargame 3D</span
             >
           </div>
           <div class="flex flex-1 text-start">
