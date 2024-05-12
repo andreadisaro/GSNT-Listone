@@ -88,7 +88,8 @@ export const useDataStore = defineStore("data", () => {
         !itemsTmp[item.category.name][item.editor.id]
       ) {
         itemsTmp[item.category.name][item.editor.id] = [];
-        editorsTmp.push(item.editor);
+        if (editorsTmp.findIndex((element) => element.id === item.editor.id) === -1)
+          editorsTmp.push(item.editor);
       }
       itemsTmp[item.category.name][
         item.editor.id
