@@ -132,7 +132,7 @@ const computedItems = computed(() => {
           </section>
         </section>
       </section>
-      <section>
+      <section v-if="dataStore.days.length">
         <section
           class="flex font-extrabold justify-end titoloRosso text-xl my-8"
           ref="redazioneRef"

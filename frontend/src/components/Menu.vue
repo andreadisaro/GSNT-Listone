@@ -39,7 +39,7 @@ const setFilter = (filter) => {
           {{ catI }}
         </div>
       </div>
-      <div class="ml-4">
+      <div class="ml-4" v-if="dataStore.days.length">
         <div
           class="flex font-extrabold my-2"
           @click="vaiACategoria('redazione')"

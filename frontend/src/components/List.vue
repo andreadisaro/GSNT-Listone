@@ -92,7 +92,7 @@ watch(
           </template>
         </div>
       </div>
-      <div>
+      <div v-if="dataStore.days.length">
         <div
           class="flex font-extrabold justify-end titoloRosso text-xl my-8"
           ref="redazioneRef"
