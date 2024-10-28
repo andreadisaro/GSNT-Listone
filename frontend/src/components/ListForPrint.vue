@@ -141,7 +141,7 @@ const computedItems = computed(() => {
         </section>
         <section class="flex flex-row space-x-2">
           <section
-            class="w-6 font-bold sfondoVerdeSemiTrasparente"
+            class="w-6 font-bold sfondoVerdeSemiTrasparente pb-1"
             v-for="day in dataStore.days"
             :key="day + 'title'"
           >
@@ -153,7 +153,7 @@ const computedItems = computed(() => {
           :key="jdI"
           class="flex-1"
         >
-          <ItemJournalist :item="jd" :journalist="jdI" />
+          <ItemJournalist :item="jd" :journalist="jdI" :print="true" />
         </section>
       </section>
       <section>

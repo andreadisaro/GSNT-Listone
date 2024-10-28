@@ -113,7 +113,7 @@ watch(
           :key="jdI"
           class="flex-1"
         >
-          <ItemJournalist :item="jd" :journalist="jdI" />
+          <ItemJournalist :item="jd" :journalist="jdI" :print="false" />
         </div>
       </div>
       <div>

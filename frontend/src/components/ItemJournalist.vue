@@ -5,6 +5,7 @@ const dataStore = useDataStore();
 defineProps({
   item: Object,
   journalist: String,
+  print: Boolean,
 });
 </script>
 
@@ -16,7 +17,8 @@ defineProps({
       :key="'journalistDay' + i"
     >
       <SvgIcon
-        class="w-5 h-5 m-auto"
+        :class="`${'w-5 h-5 ' + (print ? '' : 'm-auto')}`"
+        :style="`${print ? 'margin-left: 0.0625rem' : ''}`"
         :name="item[day] ? 'CheckboxFull' : 'CheckboxEmpty'"
       />
     </div>
