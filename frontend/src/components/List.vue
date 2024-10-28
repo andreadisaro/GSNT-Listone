@@ -142,8 +142,7 @@ watch(
           </div>
           <div class="flex flex-1 text-start">
             <img src="../assets/book-24.png" class="text-start my-auto mr-2" /><span
-              >R= Romanzo L = Librogame<br />G = Giornale F = Fumetto Game<br />
-              A = ArtBook D = Dizionario<br />W = Wargame 3D</span
+              >L = Librogame A = Antologia<br />F = Fumetto G = Lore Game Book<br />I = Agenda Investigativa</span
             >
           </div>
           <div class="flex flex-1 text-start">

@@ -185,8 +185,7 @@ const computedItems = computed(() => {
           <section class="flex py-2">
             <img src="../assets/book-24.png" class="my-auto mr-2" /><span
               class="text-start -my-4"
-              >R= Romanzo L = Librogame G = Giornale F = Fumetto Game<br />
-              A = ArtBook D = Dizionario W = Wargame 3D</span
+              >L = Librogame A = Antologia F = Fumetto<br />G = Lore Game Book I = Agenda Investigativa</span
             >
           </section>
           <section class="flex">
