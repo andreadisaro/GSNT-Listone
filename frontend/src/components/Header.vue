@@ -16,7 +16,7 @@ import SvgIcon from "./SvgIcon.vue";
       {{ dataStore.eventTitle }}
     </div-->
     <div class="text-[23px] font-bold w-full flex-1 text-center">
-      LUCCA C&G 2024
+      LUCCA C&amp;G 2024
     </div>
     <SvgIcon name="Hamburger_icon" class="h-6 w-6 my-auto fill-white"
       @click="dataStore.showMenu = !dataStore.showMenu" />
