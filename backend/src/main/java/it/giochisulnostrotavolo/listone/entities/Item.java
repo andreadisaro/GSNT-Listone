@@ -50,6 +50,9 @@ public class Item implements java.io.Serializable {
   @JoinColumn(name = "id_category")
   private Category category;
 
+  @Column
+  private Long idBgg;
+
   public Long getId() {
     return id;
   }
@@ -128,5 +131,13 @@ public class Item implements java.io.Serializable {
 
   public void setUpdateDate(Date updateDate) {
     this.updateDate = updateDate;
+  }
+
+  public Long getIdBgg() {
+    return idBgg;
+  }
+
+  public void setIdBgg(Long idBgg) {
+    this.idBgg = idBgg;
   }
 }

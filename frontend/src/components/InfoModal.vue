@@ -57,7 +57,7 @@ const modalStore = useModalStore();
         </div>
 
         <!--Body-->
-        <p>{{ modalStore.infoMessage }}</p>
+        <p v-html="modalStore.infoMessage"></p>
 
         <!--Footer-->
         <div class="flex justify-end pt-2">

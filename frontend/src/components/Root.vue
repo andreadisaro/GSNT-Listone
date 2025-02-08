@@ -13,7 +13,7 @@ const loadingStore = useLoadingStore();
 const modalStore = useModalStore();
 const dataStore = useDataStore();
 const router = useRouter();
-let fake = router.currentRoute.value.query.fake;
+const fake = router.currentRoute.value.query.fake;
 const html2Pdf = ref(null);
 const errorFunction = () => {
   modalStore.showInfoModal(

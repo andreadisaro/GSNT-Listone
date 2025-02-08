@@ -18,4 +18,8 @@ public class ItemServiceImpl implements ItemService {
   public List<Item> findAll() {
     return repo.findAll();
   }
+
+  public Item findById(Long id) {
+    return repo.findById(id).orElse(null);
+  }
 }
