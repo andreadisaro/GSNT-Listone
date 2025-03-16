@@ -1,6 +1,8 @@
 import { ref, watch, computed } from "vue";
 import { defineStore } from "pinia";
 import fakeItems from "./fakeItems";
+import { APISettings } from "../api/config.js";
+import { useLoadingStore } from "./useLoadingStore.js";
 
 export const useDataStore = defineStore("data", () => {
   const eventTitle = ref(localStorage.getItem("eventTitle") || "");
@@ -33,86 +35,103 @@ export const useDataStore = defineStore("data", () => {
   function setFakeItems() {
     items_.value = fakeItems;
   }
-  function setItems(itemsP) {
-    let itemsTmp = {};
-    let categoriesTmp = [];
-    let editorsTmp = [];
-    //sort itemsP by category.ordering and editor.name and item.name
-    itemsP = itemsP.sort((a, b) => {
-      if (a.category.ordering > b.category.ordering) {
-        return 1;
-      }
-      if (a.category.ordering < b.category.ordering) {
-        return -1;
-      }
-      if (a.editor.name > b.editor.name) {
-        return 1;
-      }
-      if (a.editor.name < b.editor.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
-      if (a.name < b.name) {
-        return -1;
-      }
-      return 0;
-    });
+  function setItems(errorFunction) {
+    fetch("/be/public/api/items", {
+      method: "GET",
+      headers: APISettings.headers,
+    })
+      .then(function (response) {
+        if (response.status != 200) {
+          console.error(response.status);
+          if (Object.entries(this.items).length == 0 && errorFunction)
+            errorFunction();
+        } else {
+          response.json().then((itemsP) => {
+            //console.log(res);
+            let itemsTmp = {};
+            let categoriesTmp = [];
+            let editorsTmp = [];
+            //sort itemsP by category.ordering and editor.name and item.name
+            itemsP = itemsP.sort((a, b) => {
+              if (a.category.ordering > b.category.ordering) {
+                return 1;
+              }
+              if (a.category.ordering < b.category.ordering) {
+                return -1;
+              }
+              if (a.editor.name > b.editor.name) {
+                return 1;
+              }
+              if (a.editor.name < b.editor.name) {
+                return -1;
+              }
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (a.name < b.name) {
+                return -1;
+              }
+              return 0;
+            });
 
-    console.log("itemsP", itemsP)
+            console.log("itemsP", itemsP);
 
-    for (let i = 0; i < itemsP.length; i++) {
-      let item = itemsP[i];
-      if (
-        items_.value[item.category.name] &&
-        items_.value[item.category.name][item.editor.id]
-      ) {
-        let index = items_.value[item.category.name][
-          item.editor.id
-        ].findIndex((element) => element.id === item.id);
-        item = {
-          ...items_.value[item.category.name][
-            item.editor.id
-          ][index],
-          ...item,
-        };
-      }
-      if (!categoriesTmp.includes(item.category.name)) {
-        categoriesTmp.push(item.category.name);
-      }
-      if (!itemsTmp[item.category.name]) {
-        itemsTmp[item.category.name] = {};
-      }
-      if (
-        !itemsTmp[item.category.name][item.editor.id]
-      ) {
-        itemsTmp[item.category.name][item.editor.id] = [];
-        if (editorsTmp.findIndex((element) => element.id === item.editor.id) === -1)
-          editorsTmp.push(item.editor);
-      }
-      itemsTmp[item.category.name][
-        item.editor.id
-      ].push(item);
-    }
+            for (let i = 0; i < itemsP.length; i++) {
+              let item = itemsP[i];
+              if (
+                items_.value[item.category.name] &&
+                items_.value[item.category.name][item.editor.id]
+              ) {
+                let index = items_.value[item.category.name][
+                  item.editor.id
+                ].findIndex((element) => element.id === item.id);
+                item = {
+                  ...items_.value[item.category.name][item.editor.id][index],
+                  ...item,
+                };
+              }
+              if (!categoriesTmp.includes(item.category.name)) {
+                categoriesTmp.push(item.category.name);
+              }
+              if (!itemsTmp[item.category.name]) {
+                itemsTmp[item.category.name] = {};
+              }
+              if (!itemsTmp[item.category.name][item.editor.id]) {
+                itemsTmp[item.category.name][item.editor.id] = [];
+                if (
+                  editorsTmp.findIndex(
+                    (element) => element.id === item.editor.id
+                  ) === -1
+                )
+                  editorsTmp.push(item.editor);
+              }
+              itemsTmp[item.category.name][item.editor.id].push(item);
+            }
 
-    items_.value = itemsTmp;
-    editorsTmp = editorsTmp.sort((a, b) => {
-      if (a.name > b.name) {
-        return 1;
-      }
-      if (a.name < b.name) {
-        return -1;
-      }
-      return 0;
-    });
-    editors.value = editorsTmp;
-    categories.value = categoriesTmp;
-    console.log("items_", itemsTmp);
-    console.log("editors", editorsTmp);
-    console.log("categories", categoriesTmp);
-    localStorage.setItem("categories", JSON.stringify(categoriesTmp));
-    localStorage.setItem("editors", JSON.stringify(editorsTmp));
+            items_.value = itemsTmp;
+            editorsTmp = editorsTmp.sort((a, b) => {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (a.name < b.name) {
+                return -1;
+              }
+              return 0;
+            });
+            editors.value = editorsTmp;
+            categories.value = categoriesTmp;
+            console.log("items_", itemsTmp);
+            console.log("editors", editorsTmp);
+            console.log("categories", categoriesTmp);
+            localStorage.setItem("categories", JSON.stringify(categoriesTmp));
+            localStorage.setItem("editors", JSON.stringify(editorsTmp));
+          });
+        }
+      })
+      .finally(() => {
+        const loadingStore = useLoadingStore();
+        loadingStore.removeLoading();
+      });
   }
   const items = computed(() => {
     let ret = {};

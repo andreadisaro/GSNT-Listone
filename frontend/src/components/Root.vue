@@ -45,24 +45,7 @@ fetch("/be/public/api/event", {
   */
 if (!fake) {
   if (Object.entries(dataStore.items).length == 0) loadingStore.addLoading();
-  fetch("/be/public/api/items", {
-    method: "GET",
-    headers: APISettings.headers,
-  })
-    .then(function (response) {
-      if (response.status != 200) {
-        console.error(response.status);
-        if (Object.entries(dataStore.items).length == 0) errorFunction();
-      } else {
-        response.json().then((res) => {
-          //console.log(res);
-          dataStore.setItems(res);
-        });
-      }
-    })
-    .finally(() => {
-      loadingStore.removeLoading();
-    });
+  dataStore.setItems(errorFunction);
 } else {
   dataStore.setFakeItems();
 }

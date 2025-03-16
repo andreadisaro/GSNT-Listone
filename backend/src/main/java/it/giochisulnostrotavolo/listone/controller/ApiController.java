@@ -70,4 +70,9 @@ public class ApiController {
     return voteService.save(vote);
   }
 
+  @GetMapping("votes")
+  public List<Vote> votes() {
+    return voteService.findAll();
+  }
+
 }
