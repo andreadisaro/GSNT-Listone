@@ -11,12 +11,12 @@ import SvgIcon from "./SvgIcon.vue";
       class="h-12 w-12 my-auto"
       v-if="dataStore.eventLogo"
     /-->
-    <img src="../assets/lucca24.png" class="h-12 w-12 my-auto" />
+    <img src="../assets/play.svg" class="h-12 w-12 my-auto" />
     <!--div class="text-[23px] font-bold w-full flex-1 text-center">
       {{ dataStore.eventTitle }}
     </div-->
     <div class="text-[23px] font-bold w-full flex-1 text-center">
-      LUCCA C&amp;G 2024
+      PLAY 2025
     </div>
     <SvgIcon name="Hamburger_icon" class="h-6 w-6 my-auto fill-white"
       @click="dataStore.showMenu = !dataStore.showMenu" />
