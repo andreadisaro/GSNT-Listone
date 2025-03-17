@@ -59,7 +59,7 @@ logging:
 
 app:
   rootDir: c:\temp\
-  #enableQuartz: false  
+  #enableQuartz: false
 
 ---
 spring:
@@ -70,3 +70,4 @@ spring:
 #   traces-sample-rate: 0.1
 
 app:
+  allowedOrigins: http://localhost:5173,https://listone.giochisulnostrotavolo.it
