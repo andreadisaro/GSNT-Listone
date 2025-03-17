@@ -45,6 +45,9 @@ if (idItem) {
                 if (json.items?.item?.thumbnail?.text) {
                   json.items.item.thumbnail.text = json.items.item.thumbnail.text.trim();
                 }
+                if (json.items?.item?.image?.text) {
+                  json.items.item.image.text = json.items.item.image.text.trim();
+                }
                 item.value = { ...resItem, bgg: json };
                 //console.log({ ...resItem, bgg: json });
               });
@@ -178,7 +181,7 @@ const vota = () => {
       </div>
       <div class="w-full items-center flex-1 mt-8">
         <div class="flex justify-center">
-          <img :src="item.bgg?.items.item.thumbnail.text" class="w-1/2" />
+          <img :src="item.bgg?.items.item.image.text" class="w-1/2" />
         </div>
         <div class="flex justify-center my-8">
           <div class="text-lg">Vuoi votare per questo titolo?<br/>Premi il <b>bottone qui sotto!</b><br/></div>
