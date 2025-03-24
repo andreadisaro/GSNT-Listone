@@ -2,6 +2,8 @@
 import { useDataStore } from "../store/useDataStore";
 const dataStore = useDataStore();
 import SvgIcon from "./SvgIcon.vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 </script>
 
 <template>
@@ -15,7 +17,7 @@ import SvgIcon from "./SvgIcon.vue";
     <!--div class="text-[23px] font-bold w-full flex-1 text-center">
       {{ dataStore.eventTitle }}
     </div-->
-    <div class="text-[23px] font-bold w-full flex-1 text-center">
+    <div class="text-[23px] font-bold w-full flex-1 text-center" @click="router.push('/')">
       PLAY 2025
     </div>
     <SvgIcon name="Hamburger_icon" class="h-6 w-6 my-auto fill-white"
