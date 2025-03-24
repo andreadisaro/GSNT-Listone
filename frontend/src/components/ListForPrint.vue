@@ -179,13 +179,13 @@ const computedItems = computed(() => {
           <section class="flex">
             <SvgIcon name="buy" class="h-6 w-6 my-auto mr-2" /><span
               class="-my-2"
-              >Questo torna a casa con me (R = Regalo C = Crowfunding)</span
+              >Questo torna a casa con me</span
             >
           </section>
           <section class="flex py-2">
             <img src="../assets/book-24.png" class="my-auto mr-2" /><span
               class="text-start -my-4"
-              >L = Librogame A = Antologia F = Fumetto<br />G = Lore Game Book I = Agenda Investigativa</span
+              >F = Fumetto / E = Enciclopedia<br/>L = Librogame / G = Fumetto game</span
             >
           </section>
           <section class="flex">
