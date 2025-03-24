@@ -5,10 +5,10 @@ import { useLoadingStore } from "../store/useLoadingStore";
 import { useModalStore } from "../store/useModalStore";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
-import Menu from "./Menu.vue";
 const loadingStore = useLoadingStore();
 const modalStore = useModalStore();
 const dataStore = useDataStore();
+dataStore.showMenuButton = false;
 const router = useRouter();
 const errorFunction = () => {
   modalStore.showInfoModal(
@@ -149,8 +149,7 @@ const vota = () => {
 </script>
 
 <template>
-  <Menu v-if="dataStore.showMenu" />
-  <template v-else-if="item">
+  <template v-if="item">
     <div class="w-full text-center items-stretch flex flex-col p-8 pt-20 min-h-[95vh]">
       <div class="w-full flex">
         <div class="flex font-extrabold justify-start text-xl">

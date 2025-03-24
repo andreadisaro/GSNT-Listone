@@ -37,6 +37,7 @@ watch(
 if (modalStore.showInstructions) {
   modalStore.showInstructionsModal();
 }
+dataStore.showMenuButton = true;
 </script>
 
 <template>

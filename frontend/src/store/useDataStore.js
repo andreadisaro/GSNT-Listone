@@ -15,6 +15,7 @@ export const useDataStore = defineStore("data", () => {
   );
   const days = ref(JSON.parse(localStorage.getItem("days")) || []);
   const showMenu = ref(false);
+  const showMenuButton = ref(true);
   const goToRef = ref(null);
   const showFilter = ref("showAll");
   const makePdf = ref(false);
@@ -251,6 +252,7 @@ export const useDataStore = defineStore("data", () => {
     goToRef,
     showFilter,
     makePdf,
+    showMenuButton,
     setMakePdfTrue,
     setShowFilter,
     setEventTitle,

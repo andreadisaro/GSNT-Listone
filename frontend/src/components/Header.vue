@@ -20,8 +20,12 @@ const router = useRouter();
     <div class="text-[23px] font-bold w-full flex-1 text-center" @click="router.push('/')">
       PLAY 2025
     </div>
-    <SvgIcon name="Hamburger_icon" class="h-6 w-6 my-auto fill-white"
-      @click="dataStore.showMenu = !dataStore.showMenu" />
+    <div v-if="dataStore.showMenuButton">
+      <SvgIcon name="Hamburger_icon" class="h-6 w-6 my-auto fill-white"
+        @click="dataStore.showMenu = !dataStore.showMenu" />
+    </div>
+    <div v-else class="h-6 w-6">
+    </div>
   </div>
 </template>
 

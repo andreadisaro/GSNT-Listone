@@ -73,11 +73,11 @@ export const useModalStore = defineStore("modal", () => {
     infoTitle,
     infoMessage,
     showPDF,
+    showInstructions,
     showPDFModal,
     hideConfirmPDFModal,
     showInfoModal,
     hideInfoModal,
     showInstructionsModal,
-    showInstructions,
   };
 });
