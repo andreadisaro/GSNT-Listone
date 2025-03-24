@@ -51,9 +51,6 @@ export const useModalStore = defineStore("modal", () => {
       "Per utilizzare il sito evita la navigazione in incognito e non cancellare la cache del browser, altrimenti perderai i dati inseriti. Si consiglia di utilizzare Google Chrome"
     );
   }
-  if (showInstructions.value) {
-    showInstructionsModal();
-  }
   function showPDFModal() {
     showPDF.value = true;
   }
@@ -81,5 +78,6 @@ export const useModalStore = defineStore("modal", () => {
     showInfoModal,
     hideInfoModal,
     showInstructionsModal,
+    showInstructions,
   };
 });

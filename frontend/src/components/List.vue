@@ -4,6 +4,8 @@ import { useDataStore } from "../store/useDataStore";
 import Item from "./Item.vue";
 import ItemJournalist from "./ItemJournalist.vue";
 import SvgIcon from "./SvgIcon.vue";
+import { useModalStore } from "../store/useModalStore";
+const modalStore = useModalStore();
 const dataStore = useDataStore();
 const catRefs = ref([]);
 const redazioneRef = ref(null);
@@ -32,6 +34,9 @@ watch(
     }
   }
 );
+if (modalStore.showInstructions) {
+  modalStore.showInstructionsModal();
+}
 </script>
 
 <template>
