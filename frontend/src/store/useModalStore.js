@@ -37,14 +37,14 @@ export const useModalStore = defineStore("modal", () => {
     infoMessage.value = infoMessageP || t("Informazione");
     showInfo.value = true;
   }
-  function hideInfoModal() {
-    showInfo.value = false;
-    localStorage.setItem("showInstructions", "false");
-  }
-
   const showInstructions = ref(
     localStorage.getItem("showInstructions") == null
   );
+  function hideInfoModal() {
+    showInfo.value = false;
+    showInstructions.value = false;
+    localStorage.setItem("showInstructions", "false");
+  }
   function showInstructionsModal() {
     showInfoModal(
       "Benvenuto",
