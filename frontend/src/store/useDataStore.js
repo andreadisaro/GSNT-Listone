@@ -17,7 +17,7 @@ export const useDataStore = defineStore("data", () => {
   const showMenu = ref(false);
   const showMenuButton = ref(true);
   const goToRef = ref(null);
-  const showFilter = ref("showAll");
+  const showFilter = ref(localStorage.getItem("showFilter") || "showAll");
   const makePdf = ref(false);
   function setMakePdfTrue() {
     makePdf.value = true;

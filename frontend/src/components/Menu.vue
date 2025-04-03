@@ -14,6 +14,7 @@ const vaiACategoria = (i) => {
 const setFilter = (filter) => {
   dataStore.setShowFilter(filter);
   dataStore.showMenu = false;
+  localStorage.setItem("showFilter", filter);
 };
 </script>
 

@@ -44,3 +44,4 @@ selenium-debug.log
 
 !.mvn/wrapper/maven-wrapper.jar
 frontend/node_modules_/yargs-parser/lib/tokenize-arg-string.js
+frontend/vite.config.js.timestamp-*
