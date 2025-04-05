@@ -244,6 +244,7 @@ export const useDataStore = defineStore("data", () => {
     eventTitle,
     eventLogo,
     items,
+    items_,
     editors,
     categories,
     journalistsDays,

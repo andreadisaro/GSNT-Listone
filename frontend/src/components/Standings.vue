@@ -46,26 +46,32 @@ const updateVotes = (resVotes) => {
   console.log("resVotes",resVotes);
   let votesTmp = [];
   for (const vote of resVotes) {
-    if (votesTmp[vote.id.idItem]) {
-      votesTmp[vote.id.idItem] = votesTmp[vote.id.idItem] + 1;
+    let index = votesTmp.findIndex((v => v.id == vote.id.idItem))
+    if (index != -1) {
+      votesTmp[index].votes = votesTmp[index].votes + 1;
     } else {
-      votesTmp[vote.id.idItem] = 1;
+      votesTmp.push({
+        id: vote.id.idItem,
+        votes: 1,
+      });
     }
   }
   console.log("votesTmp",votesTmp);
   let ret = {};
-  for (const catI in dataStore.items) {
+  for (const catI in dataStore.items_) {
     ret[catI] = [];
     for (const [index, [editorI, editor]] of Object.entries(
-      Object.entries(dataStore.items[catI])
+      Object.entries(dataStore.items_[catI])
     )) {
       for (const item of editor) {
-        if (votesTmp[item.id]) {
-          ret[catI][item.id] = { ...item, votes: votesTmp[item.id] };
+        let index = votesTmp.findIndex((v => v.id == item.id))
+        if (index != -1) {
+          ret[catI].push({ ...item, votes: votesTmp[index].votes });
         }
       }
     }
   }
+  console.log("ret",ret);
   for (const [cat, catI] of Object.entries(ret)) {
     ret[cat] = ret[cat].sort((a, b) => {
       if (a.votes < b.votes) {
