@@ -20,9 +20,9 @@ export default defineConfig({
         secure: false,
         target: {
           protocol: localhost ? "http:" : "https:",
-          host: localhost ? "localhost" : "listone.giochisulnostrotavolo.it",
+          host: localhost ? "localhost" : "list.giochisulnostrotavolo.it",
           port: localhost ? 8089 : 443,
-          ca: readFileSync("../certificate.pem"),
+          ca: readFileSync("../certificate.crt"),
         },
         changeOrigin: true,
         rewrite: (path) => {
