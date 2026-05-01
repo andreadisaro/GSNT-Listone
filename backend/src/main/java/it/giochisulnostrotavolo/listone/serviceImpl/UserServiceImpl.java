@@ -4,7 +4,6 @@ import it.giochisulnostrotavolo.listone.entities.User;
 import it.giochisulnostrotavolo.listone.entities.payload.request.LoginRequest;
 import it.giochisulnostrotavolo.listone.service.UserService;
 import java.security.NoSuchAlgorithmException;
-import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,9 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
-
-  @Resource
-  private UserService self;
 
   public User createUserAndSendEmail(User user) throws MessagingException {
     return user;
@@ -32,12 +28,14 @@ public class UserServiceImpl implements UserService {
     return "";
   }
 
-  public void deleteByUser(String user) {}
+  public void deleteByUser(String user) {
+  }
 
   public User update(String username, User user) {
     return user;
   }
 
   public void sendEmailResetPassword(LoginRequest loginRequest)
-    throws MessagingException, NoSuchAlgorithmException {}
+      throws MessagingException, NoSuchAlgorithmException {
+  }
 }
