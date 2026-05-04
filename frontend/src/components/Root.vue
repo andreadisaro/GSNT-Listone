@@ -76,7 +76,7 @@ watch(
               .set({
                 margin: 0,
                 filename: "Listone.pdf",
-                pagebreak: { mode: "avoid-all" },
+                pagebreak: { mode: "css" },
                 image: {
                   type: "jpeg",
                   quality: 2,

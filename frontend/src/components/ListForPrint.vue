@@ -40,92 +40,59 @@ const computedItems = computed(() => {
 </script>
 
 <template>
-  <section
-    class="pdf-content w-full text-center items-stretch flex flex-col min-h-[95vh]"
-  >
+  <section class="pdf-content w-full text-center items-stretch flex flex-col min-h-[95vh]">
     <section class="w-full items-center flex-1 p-8 pt-20 printPdfBody">
       <section v-for="(category, catI, i) in computedItems" :key="catI">
-        <section
-          class="flex font-extrabold justify-end titoloRosso text-xl"
-          v-if="catI.indexOf('Dx') == -1"
-        >
+        <section class="flex font-extrabold justify-end titoloRosso text-xl categoria-titolo"
+          v-if="catI.indexOf('Dx') == -1">
           {{ catI }}
         </section>
         <section class="row" v-if="catI.indexOf('Dx') == -1">
           <section class="column">
-            <section
-              v-for="(editorItems, editorItemsI, j) in category"
-              :key="editorItemsI"
-              class="page-break pt-4"
-            >
+            <section v-for="(editorItems, editorItemsI, j) in category" :key="editorItemsI" class="page-break pt-4">
               <section class="flex flex-row space-x-2">
                 <section class="w-6 sfondoVerdeSemiTrasparente py-1">
                   <SvgIcon name="look" class="h-6 w-6 my-auto" />
                 </section>
                 <section class="w-6 sfondoVerdeSemiTrasparente py-1">
-                  <SvgIcon
-                    name="buy"
-                    class="h-6 w-6 my-auto"
-                    v-if="editorItems.length && editorItems[0].bookType"
-                  />
+                  <SvgIcon name="buy" class="h-6 w-6 my-auto" v-if="editorItems.length && editorItems[0].bookType" />
                   <SvgIcon name="try" class="h-6 w-6 my-auto" v-else />
                 </section>
                 <section class="w-6 sfondoVerdeSemiTrasparente py-1">
-                  <img
-                    src="../assets/book-24.png"
-                    class="my-auto"
-                    v-if="editorItems.length && editorItems[0].bookType"
-                  />
+                  <img src="../assets/book-24.png" class="my-auto"
+                    v-if="editorItems.length && editorItems[0].bookType" />
                   <SvgIcon name="buy" class="h-6 w-6 my-auto" v-else />
                 </section>
                 <section class="font-semibold flex-1">
                   {{ editorItems[0].editor.name || editorItemsI }}
                 </section>
               </section>
-              <section
-                v-for="(item, i) in editorItems"
-                :key="'item' + item.id"
-                class="flex-1"
-              >
+              <section v-for="(item, i) in editorItems" :key="'item' + item.id" class="flex-1">
                 <ItemForPrint :item="item" />
               </section>
             </section>
           </section>
           <section class="column">
-            <section
-              v-for="(editorItems, editorItemsI, j) in computedItems[catI + 'Dx']"
-              :key="editorItemsI+'Dx'"
-              class="page-break pt-4"
-            >
+            <section v-for="(editorItems, editorItemsI, j) in computedItems[catI + 'Dx']" :key="editorItemsI + 'Dx'"
+              class="page-break pt-4">
               <section class="flex flex-row space-x-2">
                 <section class="w-6 sfondoVerdeSemiTrasparente py-1">
                   <SvgIcon name="look" class="h-6 w-6 my-auto" />
                 </section>
                 <section class="w-6 sfondoVerdeSemiTrasparente py-1">
-                  <SvgIcon
-                    name="buy"
-                    class="h-6 w-6 my-auto"
-                    v-if="editorItems.length && editorItems[0].bookType"
-                  />
+                  <SvgIcon name="buy" class="h-6 w-6 my-auto" v-if="editorItems.length && editorItems[0].bookType" />
                   <SvgIcon name="try" class="h-6 w-6 my-auto" v-else />
                 </section>
                 <section class="w-6 sfondoVerdeSemiTrasparente py-1">
-                  <img
-                    src="../assets/book-24.png"
-                    class="my-auto"
-                    v-if="editorItems.length && editorItems[0].bookType"
-                  />
+                  <img src="../assets/book-24.png" class="my-auto"
+                    v-if="editorItems.length && editorItems[0].bookType" />
                   <SvgIcon name="buy" class="h-6 w-6 my-auto" v-else />
                 </section>
                 <section class="font-semibold flex-1">
                   {{ editorItems[0].editor.name || editorItemsI }}
                 </section>
               </section>
-              <section
-                v-for="(item, i) in editorItems"
-                :key="'item' + item.id"
-                class="flex-1"
-              >
+              <section v-for="(item, i) in editorItems" :key="'item' + item.id" class="flex-1">
                 <ItemForPrint :item="item" />
               </section>
             </section>
@@ -133,66 +100,42 @@ const computedItems = computed(() => {
         </section>
       </section>
       <section v-if="dataStore.days.length">
-        <section
-          class="flex font-extrabold justify-end titoloRosso text-xl my-8"
-          ref="redazioneRef"
-        >
+        <section class="flex font-extrabold justify-end titoloRosso text-xl my-8" ref="redazioneRef">
           {{ $t("REDAZIONE") }}
         </section>
         <section class="flex flex-row space-x-2">
-          <section
-            class="w-6 font-bold sfondoVerdeSemiTrasparente pb-1"
-            v-for="day in dataStore.days"
-            :key="day + 'title'"
-          >
+          <section class="w-6 font-bold sfondoVerdeSemiTrasparente pb-1" v-for="day in dataStore.days"
+            :key="day + 'title'">
             {{ day }}
           </section>
         </section>
-        <section
-          v-for="(jd, jdI) in dataStore.journalistsDays"
-          :key="jdI"
-          class="flex-1"
-        >
+        <section v-for="(jd, jdI) in dataStore.journalistsDays" :key="jdI" class="flex-1">
           <ItemJournalist :item="jd" :journalist="jdI" :print="true" />
         </section>
       </section>
       <section>
-        <section
-          class="flex font-extrabold justify-end titoloRosso text-xl my-8"
-          ref="legendaRef"
-        >
+        <section class="flex font-extrabold justify-end titoloRosso text-xl my-8" ref="legendaRef">
           {{ $t("LEGENDA") }}
         </section>
         <section class="flex flex-col space-y-1">
           <section class="flex">
-            <SvgIcon name="look" class="h-6 w-6 my-auto mr-2" /><span
-              class="-my-2"
-              >Vorrei almeno buttarci un occhio</span
-            >
+            <SvgIcon name="look" class="h-6 w-6 my-auto mr-2" /><span class="-my-2">Vorrei almeno buttarci un
+              occhio</span>
           </section>
           <section class="flex">
-            <SvgIcon name="try" class="h-6 w-6 my-auto mr-2" /><span
-              class="-my-2"
-              >Voglio farci una partita in Fiera</span
-            >
+            <SvgIcon name="try" class="h-6 w-6 my-auto mr-2" /><span class="-my-2">Voglio farci una partita in
+              Fiera</span>
           </section>
           <section class="flex">
-            <SvgIcon name="buy" class="h-6 w-6 my-auto mr-2" /><span
-              class="-my-2"
-              >Questo torna a casa con me</span
-            >
+            <SvgIcon name="buy" class="h-6 w-6 my-auto mr-2" /><span class="-my-2">Questo torna a casa con me</span>
           </section>
           <section class="flex py-2">
-            <img src="../assets/book-24.png" class="my-auto mr-2" /><span
-              class="text-start -my-4"
-              >F = Fumetto / E = Enciclopedia<br/>L = Librogame / G = Fumetto game</span
-            >
+            <img src="../assets/book-24.png" class="my-auto mr-2" /><span class="text-start -my-4">F = Fumetto / E =
+              Enciclopedia<br />L = Librogame / G = Fumetto game</span>
           </section>
           <section class="flex">
-            <SvgIcon name="Forbidden" class="h-6 w-6 my-auto mr-2" /><span
-              class="-my-2"
-              >Il Titolo non è provabile o comprabile</span
-            >
+            <SvgIcon name="Forbidden" class="h-6 w-6 my-auto mr-2" /><span class="-my-2">Il Titolo non è provabile o
+              comprabile</span>
           </section>
         </section>
       </section>
@@ -226,5 +169,10 @@ const computedItems = computed(() => {
 
 .page-break {
   page-break-inside: avoid;
+}
+
+.categoria-titolo {
+  page-break-after: avoid;
+  break-after: avoid;
 }
 </style>
